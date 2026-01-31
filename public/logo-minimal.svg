@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .cls-2 { fill: #64ffda; font-family: sans-serif; font-weight: 900; font-size: 60px; }
+    </style>
+  </defs>
+  <text class="cls-2" x="50" y="70" text-anchor="middle">AL</text>
+  <rect x="20" y="75" width="60" height="5" fill="#64ffda" />
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .cls-1 { fill: #0a192f; }
+      .cls-2 { fill: #64ffda; font-family: sans-serif; font-weight: bold; font-size: 45px; }
+      .cls-3 { stroke: #64ffda; stroke-width: 5px; fill: none; }
+    </style>
+  </defs>
+  <polygon class="cls-1" points="50 5 95 27.5 95 72.5 50 95 5 72.5 5 27.5 50 5" />
+  <polygon class="cls-3" points="50 5 95 27.5 95 72.5 50 95 5 72.5 5 27.5 50 5" />
+  <text class="cls-2" x="50" y="65" text-anchor="middle">AL</text>
+</svg>

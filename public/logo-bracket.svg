@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .cls-1 { fill: none; }
+      .cls-2 { fill: #64ffda; font-family: monospace; font-weight: bold; font-size: 35px; }
+    </style>
+  </defs>
+  <rect class="cls-1" width="100" height="100" />
+  <text class="cls-2" x="50" y="60" text-anchor="middle">&lt;AL/&gt;</text>
+</svg>
