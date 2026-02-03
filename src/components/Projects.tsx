@@ -18,8 +18,8 @@ const Projects = () => {
         },
         {
             id: 3,
-            title: "on going",
-            description: "on going",
+            title: "Vetmed ERP (on going)",
+            description: "Enterprise Resource Planning (ERP) for veterinary clinics, with features like sales management inventory management, stock of goods, and reporting.",
             tags: ["on going", "on going", "on going"],
             link: "#"
         }
