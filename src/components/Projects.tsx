@@ -4,23 +4,23 @@ const Projects = () => {
     const projects = [
         {
             id: 1,
-            title: "E-Commerce Dashboard",
-            description: "A comprehensive dashboard for managing online stores, featuring real-time analytics and inventory management.",
-            tags: ["React", "Chart.js", "Node.js"],
-            link: "#"
+            title: "Edit Tone Photo",
+            description: "Automatic image generator (photo filter maker) used as a form of digital solidarity and social movement in Indonesia.",
+            tags: ["Next.js", "Tailwind", "Framer Motion"],
+            link: "https://brave-pink-hero-green-xi.vercel.app"
         },
         {
             id: 2,
-            title: "Social Media App",
-            description: "A responsive social media platform with real-time messaging, notifications, and user profiles.",
-            tags: ["Next.js", "Firebase", "Tailwind"],
-            link: "#"
+            title: "Booking Barbershop Online",
+            description: "Website for booking barbershop online, with features like barbershop list, booking, and user profile.",
+            tags: ["Next.js", "Vite", "shadcn/ui"],
+            link: "https://booking-barbershop-al.vercel.app"
         },
         {
             id: 3,
-            title: "Task Management Tool",
-            description: "A collaborative tool for teams to organize tasks, set deadlines, and track progress efficiently.",
-            tags: ["Vue.js", "Vuex", "SCSS"],
+            title: "on going",
+            description: "on going",
+            tags: ["on going", "on going", "on going"],
             link: "#"
         }
     ];
