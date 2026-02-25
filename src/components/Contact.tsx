@@ -24,18 +24,11 @@ const Contact = () => {
                         I'm currently open to new opportunities and collaborations.
                         Whether you have a question or just want to say hi, I'll try my best to get back to you!
                     </p>
-                    <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
-                        <div className="form-group">
-                            <input type="text" placeholder="Name" required />
-                        </div>
-                        <div className="form-group">
-                            <input type="email" placeholder="Email" required />
-                        </div>
-                        <div className="form-group">
-                            <textarea placeholder="Message" rows={5} required></textarea>
-                        </div>
-                        <button type="submit" className="btn btn-primary">Send Message</button>
-                    </form>
+                    <div className="contact-action" style={{ textAlign: 'center', marginTop: '2rem' }}>
+                        <a href="mailto:mabdulhalim257@gmail.com" className="btn btn-primary" style={{ display: 'inline-block' }}>
+                            Email Me
+                        </a>
+                    </div>
                 </motion.div>
             </div>
         </section>

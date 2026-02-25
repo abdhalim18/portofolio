@@ -18,9 +18,9 @@ const Projects = () => {
         },
         {
             id: 3,
-            title: "Vetmed ERP (on going)",
-            description: "Enterprise Resource Planning (ERP) for veterinary clinics, with features like sales management inventory management, stock of goods, and reporting.",
-            tags: ["on going", "on going", "on going"],
+            title: "POS (Point of Sale) System",
+            description: "Point of Sale (POS) System for retail businesses, with features like sales management, inventory management, stock of goods, and reporting.",
+            tags: ["Next.js"],
             link: "#"
         }
     ];
