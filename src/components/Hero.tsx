@@ -52,7 +52,7 @@ const Hero = () => {
                         </svg>
                     </a>
                     <a
-                        href="https://drive.google.com/file/d/1dtmhUBKTbzQaGOo6zlOzMakzVO3PBXCk/view?usp=drive_link"
+                        href="https://drive.google.com/file/d/1205NnDLtZi20zZ4W3S5pRyCY5UTuYEWy/view?usp=drive_link"
                         className="btn btn-outline"
                         download="Muhammad_Abdul_Halim_CV.pdf"
                     >

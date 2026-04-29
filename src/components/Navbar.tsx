@@ -36,7 +36,7 @@ const Navbar = () => {
         >
             <div className="navbar-container">
                 <a href="#hero" className="logo">
-                    Abdul Halim
+                    Muhammad Abdul Halim
                 </a>
 
                 <div className={`menu-icon ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
