@@ -39,7 +39,7 @@ const About = () => {
                     >
                         <h3>Tech Stack</h3>
                         <div className="skills-grid">
-                            {["React", "TypeScript", "Next.js", "Tailwind CSS", "Node.js", "Laravel", "PHP", "MySQL", "Figma", "JavaScript", "HTML", "CSS"].map((skill, index) => (
+                            {["React", "TypeScript", "Next.js", "Tailwind CSS", "Node.js", "Laravel", "PHP", "MySQL", "PostgreSQL", "Figma", "JavaScript", "HTML", "CSS"].map((skill, index) => (
                                 <motion.span
                                     key={skill}
                                     className="skill-tag"
