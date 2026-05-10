@@ -6,7 +6,7 @@ const Footer = () => {
                     <a href="https://github.com/abdhalim18" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                         GitHub
                     </a>
-                    <a href="#" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/in/mhmmd-abdul-halim-/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                         LinkedIn
                     </a>
                     <a href="mailto:mabdulhalim257@gmail.com" aria-label="Email">
