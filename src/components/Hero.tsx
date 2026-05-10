@@ -7,46 +7,48 @@ const Hero = () => {
             <div className="hero-content">
                 <motion.span
                     className="hero-greeting"
-                    initial={{ opacity: 0, y: 16 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2, duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                    transition={{ delay: 0.3, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
                 >
-                    👋 Hello, I'm
+                    Available for work
                 </motion.span>
                 <motion.h1
                     className="hero-title"
-                    initial={{ opacity: 0, y: 16 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3, duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                    transition={{ delay: 0.4, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
                 >
-                    Muhammad Abdul Halim
+                    Muhammad
+                    <br />
+                    Abdul Halim
                 </motion.h1>
                 <motion.h2
                     className="hero-subtitle"
-                    initial={{ opacity: 0, y: 16 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4, duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                    transition={{ delay: 0.5, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
                 >
                     Web Developer & <span className="highlight">UI/UX Enthusiast</span>
                 </motion.h2>
                 <motion.p
                     className="hero-description"
-                    initial={{ opacity: 0, y: 16 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5, duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                    transition={{ delay: 0.6, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
                 >
-                    I build pixel-perfect, engaging, and accessible digital experiences.
-                    Let's turn your ideas into reality.
+                    Crafting clean, functional, and thoughtfully designed
+                    digital experiences from concept to deployment.
                 </motion.p>
                 <motion.div
                     className="hero-buttons"
-                    initial={{ opacity: 0, y: 16 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6, duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                    transition={{ delay: 0.7, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
                 >
                     <a href="#projects" className="btn btn-primary">
-                        View My Work
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        View Projects
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <path d="M5 12h14" />
                             <path d="m12 5 7 7-7 7" />
                         </svg>
@@ -57,7 +59,7 @@ const Hero = () => {
                         download="Muhammad_Abdul_Halim_CV.pdf"
                     >
                         Download CV
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                             <polyline points="7 10 12 15 17 10" />
                             <line x1="12" x2="12" y1="15" y2="3" />

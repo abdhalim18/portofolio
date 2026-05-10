@@ -9,8 +9,8 @@ const Footer = () => {
                     <a href="#" aria-label="LinkedIn">
                         LinkedIn
                     </a>
-                    <a href="#" aria-label="Instagram">
-                        Instagram
+                    <a href="mailto:mabdulhalim257@gmail.com" aria-label="Email">
+                        Email
                     </a>
                 </div>
                 <p>&copy; {new Date().getFullYear()} Muhammad Abdul Halim</p>
