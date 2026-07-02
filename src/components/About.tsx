@@ -1,54 +1,30 @@
 import { motion } from 'motion/react';
+import reactIcon from '../assets/icons/react.svg';
+import typescriptIcon from '../assets/icons/typescript.svg';
+import nextjsIcon from '../assets/icons/nextjs.svg';
+import tailwindcssIcon from '../assets/icons/tailwindcss.svg';
+import nodejsIcon from '../assets/icons/nodejs.svg';
+import laravelIcon from '../assets/icons/laravel.svg';
+import phpIcon from '../assets/icons/php.svg';
+import mysqlIcon from '../assets/icons/mysql.svg';
+import postgresqlIcon from '../assets/icons/postgresql.svg';
+import figmaIcon from '../assets/icons/figma.svg';
+import javascriptIcon from '../assets/icons/javascript.svg';
+import html5Icon from '../assets/icons/html5.svg';
 
 const skills = [
-    {
-        name: 'React',
-        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg',
-    },
-    {
-        name: 'TypeScript',
-        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg',
-    },
-    {
-        name: 'Next.js',
-        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg',
-    },
-    {
-        name: 'Tailwind CSS',
-        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg',
-    },
-    {
-        name: 'Node.js',
-        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg',
-    },
-    {
-        name: 'Laravel',
-        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg',
-    },
-    {
-        name: 'PHP',
-        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg',
-    },
-    {
-        name: 'MySQL',
-        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg',
-    },
-    {
-        name: 'PostgreSQL',
-        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg',
-    },
-    {
-        name: 'Figma',
-        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg',
-    },
-    {
-        name: 'JavaScript',
-        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg',
-    },
-    {
-        name: 'HTML/CSS',
-        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg',
-    },
+    { name: 'React', icon: reactIcon },
+    { name: 'TypeScript', icon: typescriptIcon },
+    { name: 'Next.js', icon: nextjsIcon },
+    { name: 'Tailwind CSS', icon: tailwindcssIcon },
+    { name: 'Node.js', icon: nodejsIcon },
+    { name: 'Laravel', icon: laravelIcon },
+    { name: 'PHP', icon: phpIcon },
+    { name: 'MySQL', icon: mysqlIcon },
+    { name: 'PostgreSQL', icon: postgresqlIcon },
+    { name: 'Figma', icon: figmaIcon },
+    { name: 'JavaScript', icon: javascriptIcon },
+    { name: 'HTML/CSS', icon: html5Icon },
 ];
 
 const About = () => {
