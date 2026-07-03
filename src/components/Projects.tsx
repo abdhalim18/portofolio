@@ -8,8 +8,6 @@ const projects = [
             'Automatic image generator (photo filter maker) used as a form of digital solidarity and social movement in Indonesia.',
         tags: ['Next.js', 'Tailwind', 'Framer Motion'],
         link: 'https://brave-pink-hero-green-xi.vercel.app',
-        image: null,
-        status: 'live',
     },
     {
         id: 2,
@@ -18,8 +16,6 @@ const projects = [
             'Website for booking barbershop online, with features like barbershop list, booking, and user profile.',
         tags: ['Next.js', 'Vite', 'shadcn/ui'],
         link: 'https://booking-barbershop-al.vercel.app',
-        image: null,
-        status: 'live',
     },
     {
         id: 3,
@@ -28,8 +24,6 @@ const projects = [
             'Point of Sale (POS) System for retail businesses, with features like sales management, inventory management, stock of goods, and reporting.',
         tags: ['Next.js'],
         link: 'https://erp-roman.vercel.app',
-        image: null,
-        status: 'live',
     },
 ];
 
@@ -59,18 +53,6 @@ const Projects = () => {
                             viewport={{ once: true, margin: '-60px' }}
                             transition={{ delay: index * 0.12, duration: 0.6 }}
                         >
-                            <div className="project-preview">
-                                {project.image ? (
-                                    <img src={project.image} alt={`${project.title} preview`} className="project-preview-img" />
-                                ) : (
-                                    <div className="project-preview-placeholder">
-                                        <span>{project.title.charAt(0)}</span>
-                                    </div>
-                                )}
-                                {project.status === 'in-progress' && (
-                                    <span className="status-badge">In Progress</span>
-                                )}
-                            </div>
                             <div className="project-content">
                                 <div className="project-header">
                                     <div className="folder-icon">
