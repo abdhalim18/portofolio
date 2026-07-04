@@ -5,33 +5,61 @@ const Contact = () => {
         <section id="contact" className="contact section">
             <div className="container">
                 <motion.div
+                    className="section-head"
                     initial={{ opacity: 0, y: 24 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-80px' }}
                     transition={{ duration: 0.6 }}
-                    style={{ textAlign: 'center' }}
                 >
-                    <span className="section-label" style={{ justifyContent: 'center' }}>Contact</span>
-                    <h2 className="section-title">Let's Work Together</h2>
+                    <span className="section-index">03 — Contact</span>
+                    <h2 className="section-title">Let's work together</h2>
                 </motion.div>
+
                 <motion.div
-                    className="contact-wrapper"
+                    className="contact-status"
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-80px' }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                >
+                    <span className="hero-dot" />
+                    Currently open to internships & collaborations
+                </motion.div>
+
+                <motion.a
+                    href="mailto:mabdulhalim257@gmail.com"
+                    className="contact-link"
                     initial={{ opacity: 0, y: 24 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-80px' }}
-                    transition={{ delay: 0.15, duration: 0.6 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                    <p className="contact-text">
-                        I'm currently open to new opportunities and collaborations.
-                        Whether you have a project in mind or just want to connect — I'd love to hear from you.
-                    </p>
-                    <a href="mailto:mabdulhalim257@gmail.com" className="btn btn-primary">
-                        Get In Touch
-                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <rect width="20" height="16" x="2" y="4" rx="2" />
-                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                        </svg>
-                    </a>
+                    mabdulhalim257@gmail.com
+                </motion.a>
+
+                <motion.p
+                    className="contact-copy"
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-80px' }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                >
+                    Whether you have a project in mind or just want to connect —
+                    I'd love to hear from you.
+                </motion.p>
+
+                <motion.div
+                    className="contact-social"
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-80px' }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                >
+                    <a href="https://github.com/abdhalim18" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <span>/</span>
+                    <a href="https://www.linkedin.com/in/mhmmd-abdul-halim-/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <span>/</span>
+                    <a href="mailto:mabdulhalim257@gmail.com">Email</a>
                 </motion.div>
             </div>
         </section>

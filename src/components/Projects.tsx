@@ -32,60 +32,50 @@ const Projects = () => {
         <section id="projects" className="projects section">
             <div className="container">
                 <motion.div
+                    className="section-head"
                     initial={{ opacity: 0, y: 24 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-80px' }}
                     transition={{ duration: 0.6 }}
                 >
-                    <span className="section-label">Work</span>
+                    <span className="section-index">02 — Work</span>
                     <h2 className="section-title">Featured Projects</h2>
                     <p className="section-subtitle">
                         A curated selection of projects — from social-impact tools to full-stack business systems.
                     </p>
                 </motion.div>
-                <div className="projects-grid">
+
+                <div className="project-list">
                     {projects.map((project, index) => (
-                        <motion.div
+                        <motion.a
                             key={project.id}
-                            className="project-card"
+                            className="project-row"
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             initial={{ opacity: 0, y: 24 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: '-60px' }}
-                            transition={{ delay: index * 0.12, duration: 0.6 }}
+                            transition={{ delay: index * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                         >
-                            <div className="project-content">
-                                <div className="project-header">
-                                    <div className="folder-icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                                            <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
-                                        </svg>
-                                    </div>
-                                    {project.link && (
-                                        <div className="project-links">
-                                            <a
-                                                href={project.link}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                aria-label={`Visit ${project.title}`}
-                                            >
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                                                    <polyline points="15 3 21 3 21 9" />
-                                                    <line x1="10" y1="14" x2="21" y2="3" />
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    )}
-                                </div>
-                                <h3 className="project-title">{project.title}</h3>
-                                <p className="project-description">{project.description}</p>
-                                <div className="project-tags">
+                            <span className="project-row-fill" aria-hidden="true" />
+                            <span className="project-index">{String(index + 1).padStart(2, '0')}</span>
+                            <span className="project-main">
+                                <span className="project-title">{project.title}</span>
+                                <span className="project-description">{project.description}</span>
+                                <span className="project-tags">
                                     {project.tags.map((tag) => (
-                                        <span key={tag} className="tag">{tag}</span>
+                                        <span key={tag}>{tag}</span>
                                     ))}
-                                </div>
-                            </div>
-                        </motion.div>
+                                </span>
+                            </span>
+                            <span className="project-arrow" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M7 17 17 7" />
+                                    <path d="M7 7h10v10" />
+                                </svg>
+                            </span>
+                        </motion.a>
                     ))}
                 </div>
             </div>

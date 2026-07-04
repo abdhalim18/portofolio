@@ -1,59 +1,89 @@
-import { motion } from 'motion/react';
+import { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import MagneticButton from './MagneticButton';
+
+const roles = ['Web Developer', 'UI/UX Enthusiast', 'Problem Solver'];
 
 const Hero = () => {
+    const [roleIndex, setRoleIndex] = useState(0);
+
+    useEffect(() => {
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduced) return;
+        const interval = setInterval(() => {
+            setRoleIndex((prev) => (prev + 1) % roles.length);
+        }, 2600);
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <section id="hero" className="hero">
-            <div className="hero-background"></div>
-            <div className="hero-content">
-                <motion.span
-                    className="hero-greeting"
-                    initial={{ opacity: 0, y: 20 }}
+            <div className="hero-inner">
+                <motion.div
+                    className="hero-meta"
+                    initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                    transition={{ delay: 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 >
-                    Available for work
-                </motion.span>
+                    <span className="hero-dot" />
+                    Available for work — based in Indonesia
+                </motion.div>
+
                 <motion.h1
-                    className="hero-title"
-                    initial={{ opacity: 0, y: 20 }}
+                    className="hero-name"
+                    initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                    transition={{ delay: 0.32, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 >
                     Muhammad
                     <br />
                     Abdul Halim
                 </motion.h1>
-                <motion.h2
-                    className="hero-subtitle"
-                    initial={{ opacity: 0, y: 20 }}
+
+                <motion.div
+                    className="hero-role"
+                    initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                    transition={{ delay: 0.46, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 >
-                    Web Developer & <span className="highlight">UI/UX Enthusiast</span>
-                </motion.h2>
+                    <span>I work as a</span>
+                    <AnimatePresence mode="wait">
+                        <motion.em
+                            key={roles[roleIndex]}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                        >
+                            {roles[roleIndex]}
+                        </motion.em>
+                    </AnimatePresence>
+                </motion.div>
+
                 <motion.p
-                    className="hero-description"
-                    initial={{ opacity: 0, y: 20 }}
+                    className="hero-desc"
+                    initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                    transition={{ delay: 0.58, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 >
                     Crafting clean, functional, and thoughtfully designed
                     digital experiences from concept to deployment.
                 </motion.p>
+
                 <motion.div
-                    className="hero-buttons"
-                    initial={{ opacity: 0, y: 20 }}
+                    className="hero-actions"
+                    initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.7, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                    transition={{ delay: 0.7, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 >
-                    <a href="#projects" className="btn btn-primary">
+                    <MagneticButton href="#projects" className="btn btn-primary">
                         View Projects
                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <path d="M5 12h14" />
                             <path d="m12 5 7 7-7 7" />
                         </svg>
-                    </a>
-                    <a
+                    </MagneticButton>
+                    <MagneticButton
                         href="https://drive.google.com/file/d/1205NnDLtZi20zZ4W3S5pRyCY5UTuYEWy/view?usp=drive_link"
                         className="btn btn-outline"
                         download="Muhammad_Abdul_Halim_CV.pdf"
@@ -64,8 +94,13 @@ const Hero = () => {
                             <polyline points="7 10 12 15 17 10" />
                             <line x1="12" x2="12" y1="15" y2="3" />
                         </svg>
-                    </a>
+                    </MagneticButton>
                 </motion.div>
+            </div>
+
+            <div className="scroll-cue">
+                <span>SCROLL</span>
+                <div className="scroll-cue-line"><i /></div>
             </div>
         </section>
     );
