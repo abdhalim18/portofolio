@@ -25,6 +25,30 @@ const projects = [
         tags: ['Next.js'],
         link: 'https://erp-roman.vercel.app',
     },
+    {
+        id: 4,
+        title: 'Ar-Risalah Islamic Boarding School',
+        description:
+            'Website for an Islamic boarding school (asrama), featuring school information, student registration, and management modules.',
+        tags: ['Next.js', 'Tailwind'],
+        link: 'https://ar-risalah-du.vercel.app/',
+    },
+    {
+        id: 5,
+        title: 'Konverta - File Converter',
+        description:
+            'Web-based file conversion tool that lets users convert files between different formats quickly and easily.',
+        tags: ['Next.js', 'Tailwind'],
+        link: 'https://konverta-file.vercel.app/',
+    },
+    {
+        id: 6,
+        title: 'POS App (Flutter)',
+        description:
+            'Cross-platform Point of Sale mobile application built with Flutter, integrated with Supabase for backend and data management.',
+        tags: ['Flutter', 'Dart', 'Supabase'],
+        link: 'https://github.com/abdhalim18/project_flutter',
+    },
 ];
 
 const Projects = () => {
