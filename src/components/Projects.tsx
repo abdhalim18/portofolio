@@ -23,7 +23,7 @@ const projects = [
         description:
             'Point of Sale (POS) System for retail businesses, with features like sales management, inventory management, stock of goods, and reporting.',
         tags: ['Next.js'],
-        link: 'https://erp-roman.vercel.app',
+        link: 'https://pos-roman.vercel.app',
     },
     {
         id: 4,
@@ -48,6 +48,14 @@ const projects = [
             'Cross-platform Point of Sale mobile application built with Flutter, integrated with Supabase for backend and data management.',
         tags: ['Flutter', 'Dart', 'Supabase'],
         link: 'https://github.com/abdhalim18/project_flutter',
+    },
+    {
+        id: 7,
+        title: 'Barbershop Booking API (Laravel)',
+        description:
+            'Backend REST API for the Barbershop Booking platform, built with Laravel and MySQL to handle bookings, barbershops, and user data.',
+        tags: ['Laravel', 'MySQL', 'PHP'],
+        link: 'https://github.com/abdhalim18/barbershop_booking_laravel',
     },
 ];
 
