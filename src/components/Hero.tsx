@@ -84,7 +84,7 @@ const Hero = () => {
                         </svg>
                     </MagneticButton>
                     <MagneticButton
-                        href="https://drive.google.com/file/d/1205NnDLtZi20zZ4W3S5pRyCY5UTuYEWy/view?usp=drive_link"
+                        href="https://drive.google.com/file/d/1z3m_Vyld_QySb7ym9sU2wHJVKRhm_GRE/view?usp=sharing"
                         className="btn btn-outline"
                         download="Muhammad_Abdul_Halim_CV.pdf"
                     >
