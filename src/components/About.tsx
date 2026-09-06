@@ -30,8 +30,8 @@ const skills = [
 const specs = [
     { label: 'Role', value: 'Web Developer' },
     { label: 'Focus', value: 'Front-end & UI Systems' },
-    { label: 'Study', value: '8th-semester, Information Systems' },
-    { label: 'Status', value: 'Open to internships & collab' },
+    { label: 'Study', value: 'Information Systems Graduate' },
+    { label: 'Status', value: 'Open to full-time roles & collab' },
 ];
 
 const About = () => {
@@ -63,8 +63,8 @@ const About = () => {
                             and intuitive digital solutions.
                         </p>
                         <p className="about-body">
-                            An 8th-semester Information Systems student with a deep focus on web
-                            development. I'm actively seeking internship opportunities or
+                            A recent Information Systems graduate with a deep focus on web
+                            development. I'm actively seeking full-time roles or
                             collaborative projects where I can apply my skills, learn from
                             experienced professionals, and create meaningful impact through
                             technology.
