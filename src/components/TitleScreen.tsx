@@ -11,7 +11,7 @@ import { prefersReducedMotion } from '@/lib/motion';
 gsap.registerPlugin(useGSAP);
 
 const ROLES = ['Web Developer', 'UI/UX Enthusiast', 'Problem Solver'];
-const CV_URL = 'https://drive.google.com/file/d/1z3m_Vyld_QySb7ym9sU2wHJVKRhm_GRE/view?usp=sharing';
+const CV_URL = 'https://drive.google.com/file/d/1emuzKndKYUwePhNjp9HeDDqhDCi0vomF/view?usp=sharing';
 const STARTED_KEY = 'ff-title-started';
 
 type MenuItem = { label: string; href: string; help: string; external?: boolean };
@@ -40,7 +40,7 @@ const STARS = (() => {
 
 type Phase = 'attract' | 'starting' | 'menu';
 
-const noopSubscribe = () => () => {};
+const noopSubscribe = () => () => { };
 function readStarted() {
   try {
     return window.sessionStorage.getItem(STARTED_KEY) === '1';
