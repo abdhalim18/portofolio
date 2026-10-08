@@ -1,4 +1,3 @@
-import { motion } from 'motion/react';
 
 const projects = [
     {
@@ -21,7 +20,7 @@ const projects = [
         id: 3,
         title: 'POS (Point of Sale) System',
         description:
-            'Point of Sale (POS) System for retail businesses, with features like sales management, inventory management, stock of goods, and reporting.',
+            'Point of Sale (POS) System for retail businesses, with features like sales management, FEFO (First Expired, First Out) inventory management, stock of goods, and reporting.',
         tags: ['Next.js'],
         link: 'https://pos-roman.vercel.app',
     },
@@ -63,32 +62,23 @@ const Projects = () => {
     return (
         <section id="projects" className="projects section">
             <div className="container">
-                <motion.div
-                    className="section-head"
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-80px' }}
-                    transition={{ duration: 0.6 }}
-                >
+                <div data-reveal className="section-head">
                     <span className="section-index">02 — Work</span>
                     <h2 className="section-title">Featured Projects</h2>
                     <p className="section-subtitle">
                         A curated selection of projects — from social-impact tools to full-stack business systems.
                     </p>
-                </motion.div>
+                </div>
 
                 <div className="project-list">
                     {projects.map((project, index) => (
-                        <motion.a
+                        <a
+                            data-reveal
                             key={project.id}
                             className="project-row"
                             href={project.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            initial={{ opacity: 0, y: 24 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: '-60px' }}
-                            transition={{ delay: index * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                         >
                             <span className="project-row-fill" aria-hidden="true" />
                             <span className="project-index">{String(index + 1).padStart(2, '0')}</span>
@@ -107,7 +97,7 @@ const Projects = () => {
                                     <path d="M7 7h10v10" />
                                 </svg>
                             </span>
-                        </motion.a>
+                        </a>
                     ))}
                 </div>
             </div>

@@ -1,16 +1,15 @@
-import { motion } from 'motion/react';
-import reactIcon from '../assets/icons/react.svg';
-import typescriptIcon from '../assets/icons/typescript.svg';
-import nextjsIcon from '../assets/icons/nextjs.svg';
-import tailwindcssIcon from '../assets/icons/tailwindcss.svg';
-import nodejsIcon from '../assets/icons/nodejs.svg';
-import laravelIcon from '../assets/icons/laravel.svg';
-import phpIcon from '../assets/icons/php.svg';
-import mysqlIcon from '../assets/icons/mysql.svg';
-import postgresqlIcon from '../assets/icons/postgresql.svg';
-import figmaIcon from '../assets/icons/figma.svg';
-import javascriptIcon from '../assets/icons/javascript.svg';
-import html5Icon from '../assets/icons/html5.svg';
+const reactIcon = '/icons/react.svg';
+const typescriptIcon = '/icons/typescript.svg';
+const nextjsIcon = '/icons/nextjs.svg';
+const tailwindcssIcon = '/icons/tailwindcss.svg';
+const nodejsIcon = '/icons/nodejs.svg';
+const laravelIcon = '/icons/laravel.svg';
+const phpIcon = '/icons/php.svg';
+const mysqlIcon = '/icons/mysql.svg';
+const postgresqlIcon = '/icons/postgresql.svg';
+const figmaIcon = '/icons/figma.svg';
+const javascriptIcon = '/icons/javascript.svg';
+const html5Icon = '/icons/html5.svg';
 
 const skills = [
     { name: 'React', icon: reactIcon },
@@ -40,24 +39,13 @@ const About = () => {
     return (
         <section id="about" className="about section">
             <div className="container">
-                <motion.div
-                    className="section-head"
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-80px' }}
-                    transition={{ duration: 0.6 }}
-                >
+                <div data-reveal className="section-head">
                     <span className="section-index">01 — About</span>
                     <h2 className="section-title">A bit about me</h2>
-                </motion.div>
+                </div>
 
                 <div className="about-grid">
-                    <motion.div
-                        initial={{ opacity: 0, y: 24 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: '-80px' }}
-                        transition={{ duration: 0.6, delay: 0.1 }}
-                    >
+                    <div data-reveal>
                         <p className="about-intro">
                             I enjoy turning complex problems into simple, beautiful,
                             and intuitive digital solutions.
@@ -69,22 +57,16 @@ const About = () => {
                             experienced professionals, and create meaningful impact through
                             technology.
                         </p>
-                    </motion.div>
+                    </div>
 
-                    <motion.dl
-                        className="about-specs"
-                        initial={{ opacity: 0, y: 24 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: '-80px' }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                    >
+                    <dl data-reveal className="about-specs">
                         {specs.map((spec) => (
                             <div className="about-spec-row" key={spec.label}>
                                 <dt>{spec.label}</dt>
                                 <dd>{spec.value}</dd>
                             </div>
                         ))}
-                    </motion.dl>
+                    </dl>
                 </div>
 
                 <div className="marquee-wrap">

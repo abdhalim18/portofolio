@@ -1,73 +1,39 @@
-# React + TypeScript + Vite
+# Abdul Halim — Portfolio (Classic Final Fantasy theme)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio styled after SNES/PS1-era Final Fantasy menus.
 
-Currently, two official plugins are available:
+**Stack:** Next.js (App Router) · Tailwind CSS v4 · GSAP
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # production build
+npm run lint
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Where things live
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- `src/app/globals.css` — FF theme tokens, menu box, cursor, blink and wipe styles
+- `src/app/layout.tsx` — fonts, metadata, sound toggle, screen transition between routes
+- `src/app/page.tsx` — home: the title screen only
+- `src/app/about`, `src/app/projects`, `src/app/contact` — each section is its own game screen
+- `src/components/TitleScreen.tsx` — hero as a game title screen
+- `src/components/ff/GameScreen.tsx` — shared screen frame: window, Cancel/Esc back to title, Next button, command menu
+- `src/components/ff/` — other FF primitives (MenuBox, HandPointer, ScreenLink, FieldMenu, SoundToggle)
+- `src/lib/sfx.ts` — menu sound effects; drop your own files in `public/sfx/` and register them there
+- `public/cursors/` — pixel-art pointing-glove cursor
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Journal: live music & workouts
+
+The `/journal` screen shows the last song played (Spotify, scrobbled through Last.fm)
+and the latest workout from an Amazfit watch (Zepp, synced to Intervals.icu).
+Secrets stay on the server (`src/app/api/*`); the browser only gets display-safe fields (no location or route map).
+
+1. `cp .env.example .env.local`
+2. Music: connect Spotify to Last.fm at last.fm/settings/applications, create an API account at last.fm/api/account/create,
+   then fill `LASTFM_API_KEY` and `LASTFM_USERNAME`.
+3. Workouts: connect Amazfit in intervals.icu Settings, create an API key under "Developer Settings",
+   then fill `INTERVALS_API_KEY`.
+4. Add the same variables to the Vercel project's Environment Variables and redeploy.
+
+Without these variables the screen still works and shows "not connected yet".
