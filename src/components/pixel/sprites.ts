@@ -75,3 +75,38 @@ export const PLAYER = {
     b: '#000000',
   },
 } as const;
+
+/** Frame jalan: kaki terbuka. Dipakai bergantian dengan PLAYER saat berlari. */
+export const PLAYER_WALK = {
+  map: [...PLAYER.map.slice(0, 11), '..pp....pp..', '.bbb....bbb.'],
+  palette: PLAYER.palette,
+} as const;
+
+/** Blok item kuning dengan paku di sudut dan berlian di tengah. */
+export const ITEM_BLOCK = {
+  map: [
+    'kkkkkkkkkkkkkkkk',
+    'kylllllllllllllk',
+    'klrllllllllllrok',
+    'kllllllllllllllk',
+    'klllllllkllllllk',
+    'kllllllkykllllok',
+    'klllllkyyyklllok',
+    'kllllkyyyyyklllk',
+    'klllllkyyyklllok',
+    'kllllllkykllllok',
+    'klllllllkllllllk',
+    'kllllllllllllllk',
+    'kllllllllllllllk',
+    'klrllllllllllrok',
+    'kooooooooooooook',
+    'kkkkkkkkkkkkkkkk',
+  ],
+  palette: { k: '#000000', y: '#fcfcfc', l: '#fcb800', r: '#000000', o: '#c88400' },
+} as const;
+
+/** Blok yang sudah dipukul: cokelat polos. */
+export const USED_BLOCK = {
+  map: ITEM_BLOCK.map.map((row) => row.replace(/[ylr]/g, 'u').replace(/o/g, 'd')),
+  palette: { k: '#000000', u: '#a85020', d: '#6c2c08' },
+} as const;

@@ -240,6 +240,16 @@
   .px-blink {
     animation: px-blink 1s steps(1) infinite;
   }
+
+  /* Blok terpukul dari bawah */
+  .px-bump {
+    animation: px-bump 180ms steps(3);
+  }
+
+  /* Papan tautan keluar dari blok */
+  .px-pop {
+    animation: px-pop 300ms steps(3);
+  }
 }
 
 @keyframes px-drift {
@@ -259,6 +269,15 @@
   50%  { transform: scaleX(0.15); }
   75%  { transform: scaleX(0.5); }
   100% { transform: scaleX(1); }
+}
+
+@keyframes px-bump {
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes px-pop {
+  from { opacity: 0; translate: -50% 16px; }
+  to   { opacity: 1; translate: -50% 0; }
 }
 
 @keyframes px-blink {

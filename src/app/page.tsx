@@ -4,6 +4,7 @@ import MusicPanel from '@/components/journal/MusicPanel';
 import WorkoutPanel from '@/components/journal/WorkoutPanel';
 import PixelArt from '@/components/pixel/PixelArt';
 import { CLOUD, COIN, HILL, PLAYER } from '@/components/pixel/sprites';
+import PlatformerHero from '@/components/pixel/PlatformerHero';
 
 // Halaman utama: dunia atas (hero) lalu level bawah tanah (About, Journal, Skills).
 export default function Home() {
@@ -56,13 +57,14 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Karakter pemain berdiri di atas tanah */}
-          <div aria-hidden="true" className="pointer-events-none absolute bottom-16 right-[18%] hidden md:block">
+          {/* Tablet: karakter diam. Layar lebar: karakter bisa dimainkan (PlatformerHero). */}
+          <div aria-hidden="true" className="pointer-events-none absolute bottom-16 right-[18%] hidden md:block lg:hidden">
             <PixelArt {...PLAYER} scale={6} className="px-bob" />
           </div>
         </div>
 
         <div aria-hidden="true" className="px-ground absolute inset-x-0 bottom-0" />
+        <PlatformerHero />
       </section>
 
       <About />
