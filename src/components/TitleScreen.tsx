@@ -16,12 +16,10 @@ const STARTED_KEY = 'ff-title-started';
 
 type MenuItem = { label: string; href: string; help: string; external?: boolean };
 
-// New Game -> /about, Continue -> /projects, Journal -> /journal, Options -> /contact, plus CV lama tetap ada.
+// Menu utama. About Me dan Journal sudah tampil di bawah title screen, jadi tidak perlu item menu.
 const MENU: MenuItem[] = [
-  { label: 'New Game', href: '/about', help: 'Start the story: who I am and the tools I use.' },
-  { label: 'Continue', href: '/projects', help: 'Load my save files: the projects I have shipped.' },
-  { label: 'Journal', href: '/journal', help: 'Live log: my last song on Spotify and my latest workout.' },
-  { label: 'Options', href: '/contact', help: 'Send me a message, or find me on GitHub and LinkedIn.' },
+  { label: 'Projects', href: '/projects', help: 'Browse the projects I have built and shipped.' },
+  { label: 'Contact', href: '/contact', help: 'Send me a message, or find me on GitHub and LinkedIn.' },
   { label: 'Download CV', href: CV_URL, help: 'Open my CV on Google Drive in a new tab.', external: true },
 ];
 

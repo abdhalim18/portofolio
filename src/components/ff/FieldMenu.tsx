@@ -5,13 +5,11 @@ import { usePathname } from 'next/navigation';
 import HandPointer from './HandPointer';
 import ScreenLink from './ScreenLink';
 
-// Label bergaya FF + nama asli halaman agar tetap jelas bagi pengunjung.
+// Nama menu langsung menjelaskan isinya, ditambah keterangan singkat.
 const ITEMS = [
-  { href: '/about', label: 'Status', hint: 'About me' },
-  { href: '/projects', label: 'Save Data', hint: 'Projects' },
-  { href: '/journal', label: 'Journal', hint: 'Music & workouts' },
-  { href: '/contact', label: 'Talk', hint: 'Contact' },
-  { href: '/', label: 'Title', hint: 'Home' },
+  { href: '/projects', label: 'Projects', hint: 'Things I have built' },
+  { href: '/contact', label: 'Contact', hint: 'Get in touch' },
+  { href: '/', label: 'Home', hint: 'About me & journal' },
 ];
 
 /**
