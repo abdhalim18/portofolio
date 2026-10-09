@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import GameScreen from '@/components/ff/GameScreen';
 import Projects from '@/components/Projects';
+import PageIntro from '@/components/site/PageIntro';
 
 export const metadata: Metadata = {
   title: 'Projects',
@@ -9,8 +9,11 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <GameScreen label="Projects" next={{ href: '/contact', label: 'Contact' }}>
-      <Projects />
-    </GameScreen>
+    <main id="main" className="mx-auto w-full max-w-5xl px-5 pb-32 pt-20 sm:px-8 md:pt-24">
+      <PageIntro title="Projects">From social-impact tools to full-stack business systems. Each one opens in a new tab.</PageIntro>
+      <div className="mt-16">
+        <Projects />
+      </div>
+    </main>
   );
 }

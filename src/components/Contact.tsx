@@ -1,41 +1,34 @@
+import { ArrowUpRight } from '@phosphor-icons/react/dist/ssr';
+import { EMAIL, SOCIALS } from '@/lib/site';
 
-const Contact = () => {
-    return (
-        <section id="contact" className="contact section">
-            <div className="container">
-                <div data-reveal className="section-head">
-                    <span className="section-index">03 — Contact</span>
-                    <h2 className="section-title">Let's work together</h2>
-                </div>
+/** Kontak: alamat email besar sebagai aksi utama, lalu tautan lain. */
+export default function Contact() {
+  return (
+    <>
+      <a
+        data-reveal
+        style={{ '--i': 2 } as React.CSSProperties}
+        href={`mailto:${EMAIL}`}
+        className="text-link mt-12 inline-block text-2xl font-medium tracking-tight break-all sm:text-4xl md:text-5xl"
+      >
+        {EMAIL}
+      </a>
 
-                <div data-reveal className="contact-status">
-                    <span className="hero-dot" />
-                    Currently open to internships & collaborations
-                </div>
-
-                <a
-                    data-reveal
-                    href="mailto:mabdulhalim257@gmail.com"
-                    className="contact-link"
-                >
-                    mabdulhalim257@gmail.com
-                </a>
-
-                <p data-reveal className="contact-copy">
-                    Whether you have a project in mind or just want to connect —
-                    I'd love to hear from you.
-                </p>
-
-                <div data-reveal className="contact-social">
-                    <a href="https://github.com/abdhalim18" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    <span>/</span>
-                    <a href="https://www.linkedin.com/in/mhmmd-abdul-halim-/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                    <span>/</span>
-                    <a href="mailto:mabdulhalim257@gmail.com">Email</a>
-                </div>
-            </div>
-        </section>
-    );
-};
-
-export default Contact;
+      <ul data-reveal style={{ '--i': 3 } as React.CSSProperties} className="mt-16 flex flex-col border-t border-line sm:max-w-md">
+        {SOCIALS.map((s) => (
+          <li key={s.label} className="border-b border-line">
+            <a
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-between py-4 text-[17px] text-ink"
+            >
+              {s.label}
+              <ArrowUpRight weight="bold" className="size-4 text-muted transition-[color,transform] duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink" />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+}

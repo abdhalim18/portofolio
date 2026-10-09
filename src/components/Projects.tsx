@@ -1,3 +1,4 @@
+import { ArrowUpRight } from '@phosphor-icons/react/dist/ssr';
 
 const projects = [
     {
@@ -58,51 +59,35 @@ const projects = [
     },
 ];
 
-const Projects = () => {
+/** Daftar proyek: judul dan teknologi di kiri, deskripsi di kanan, garis tipis di antara baris. */
+export default function Projects() {
     return (
-        <section id="projects" className="projects section">
-            <div className="container">
-                <div data-reveal className="section-head">
-                    <span className="section-index">02 — Work</span>
-                    <h2 className="section-title">Featured Projects</h2>
-                    <p className="section-subtitle">
-                        A curated selection of projects — from social-impact tools to full-stack business systems.
-                    </p>
-                </div>
-
-                <div className="project-list">
-                    {projects.map((project, index) => (
-                        <a
-                            data-reveal
-                            key={project.id}
-                            className="project-row"
-                            href={project.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <span className="project-row-fill" aria-hidden="true" />
-                            <span className="project-index">{String(index + 1).padStart(2, '0')}</span>
-                            <span className="project-main">
-                                <span className="project-title">{project.title}</span>
-                                <span className="project-description">{project.description}</span>
-                                <span className="project-tags">
-                                    {project.tags.map((tag) => (
-                                        <span key={tag}>{tag}</span>
-                                    ))}
-                                </span>
-                            </span>
-                            <span className="project-arrow" aria-hidden="true">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M7 17 17 7" />
-                                    <path d="M7 7h10v10" />
-                                </svg>
-                            </span>
-                        </a>
-                    ))}
-                </div>
-            </div>
-        </section>
+        <ul className="border-t border-line">
+            {projects.map((project, i) => (
+                <li key={project.id} data-reveal style={{ '--i': Math.min(i, 3) } as React.CSSProperties} className="border-b border-line">
+                    <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group grid gap-3 py-8 transition-colors duration-200 md:grid-cols-12 md:gap-8"
+                    >
+                        <div className="md:col-span-5">
+                            <h2 className="text-xl font-semibold tracking-tight transition-colors duration-200 group-hover:text-ink">
+                                {project.title}
+                            </h2>
+                            <p className="mt-2 font-mono text-xs text-muted">{project.tags.join(', ')}</p>
+                        </div>
+                        <p className="text-muted md:col-span-6">{project.description}</p>
+                        <span className="hidden justify-self-end md:col-span-1 md:block" aria-hidden="true">
+                            <ArrowUpRight
+                                weight="bold"
+                                className="size-5 text-muted transition-[color,transform] duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink"
+                            />
+                        </span>
+                        <span className="sr-only"> (opens in a new tab)</span>
+                    </a>
+                </li>
+            ))}
+        </ul>
     );
-};
-
-export default Projects;
+}
