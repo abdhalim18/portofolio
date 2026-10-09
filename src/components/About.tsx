@@ -20,57 +20,56 @@ const facts = [
   { label: 'Status', value: 'Open to full-time roles and collaborations' },
 ];
 
-/** Bagian About: judul di kolom kiri, cerita dan fakta singkat di kanan. */
+/** About: cerita singkat di kiri, "stat pemain" di panel kanan. */
 export default function About() {
   return (
-    <section id="about-me" aria-labelledby="about-title" className="scroll-mt-20 border-t border-line">
-      <div className="mx-auto grid w-full max-w-5xl gap-10 px-5 py-24 sm:px-8 md:grid-cols-12 md:py-32">
-        <h2 id="about-title" data-reveal className="text-sm font-medium text-muted md:col-span-4">
-          About
-        </h2>
-
-        <div className="md:col-span-8">
-          <p data-reveal className="text-2xl leading-snug font-medium tracking-tight text-ink md:text-3xl">
+    <section id="about-me" aria-labelledby="about-title" className="scroll-mt-20">
+      <div className="mx-auto grid w-full max-w-5xl gap-10 px-4 py-20 sm:px-8 md:grid-cols-12 md:py-24">
+        <div className="md:col-span-7">
+          <h2 id="about-title" data-reveal className="text-lg sm:text-xl [text-shadow:4px_4px_0_#000]">
+            ABOUT ME
+          </h2>
+          <p data-reveal className="mt-8 font-pixel text-sm leading-loose text-cream sm:text-base sm:leading-loose">
             I turn complex problems into simple, intuitive web products.
           </p>
-          <p data-reveal className="mt-6 max-w-[60ch] text-lg text-muted">
+          <p data-reveal className="mt-6 max-w-[58ch] text-[17px] text-muted">
             I recently graduated in Information Systems with a focus on web development. I&apos;m looking for a
             full-time role or a project team where I can ship real work, learn from experienced engineers, and keep
             getting better at the craft.
           </p>
-
-          <dl className="mt-12 grid gap-x-10 gap-y-6 border-t border-line pt-8 sm:grid-cols-2">
-            {facts.map((f, i) => (
-              <div key={f.label} data-reveal style={{ '--i': i } as React.CSSProperties}>
-                <dt className="font-mono text-xs text-muted">{f.label}</dt>
-                <dd className="mt-1 text-[17px] text-ink">{f.value}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
+
+        <dl data-reveal style={{ '--i': 1 } as React.CSSProperties} className="px-panel self-start p-6 md:col-span-5">
+          {facts.map((f, i) => (
+            <div key={f.label} className={i > 0 ? 'mt-5 border-t-4 border-dashed border-panel-2 pt-5' : ''}>
+              <dt className="px-label">{f.label}</dt>
+              <dd className="mt-1.5 text-[17px] text-cream">{f.value}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );
 }
 
-/** Bagian Skills: grid ikon dan nama, tanpa kartu. */
+/** Skills: kotak-kotak item seperti inventori. */
 export function Skills() {
   return (
-    <section id="skills" aria-labelledby="skills-title" className="scroll-mt-20 border-t border-line">
-      <div className="mx-auto w-full max-w-5xl px-5 py-24 sm:px-8 md:py-32">
-        <h2 id="skills-title" data-reveal className="text-2xl font-semibold tracking-tight md:text-3xl">
-          Tools I work with
+    <section id="skills" aria-labelledby="skills-title" className="scroll-mt-20">
+      <div className="mx-auto w-full max-w-5xl px-4 py-20 sm:px-8 md:py-24">
+        <h2 id="skills-title" data-reveal className="text-lg sm:text-xl [text-shadow:4px_4px_0_#000]">
+          TOOLS I WORK WITH
         </h2>
-        <ul className="mt-12 grid grid-cols-2 gap-x-6 gap-y-7 sm:grid-cols-3 md:grid-cols-4">
+        <ul className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
           {skills.map((skill, i) => (
             <li
               key={skill.name}
               data-reveal
               style={{ '--i': i % 4 } as React.CSSProperties}
-              className="flex items-center gap-3 text-[17px] text-ink"
+              className="flex items-center gap-3 border-4 border-black bg-panel-2 p-3 text-[15px] text-cream shadow-[4px_4px_0_#000] sm:text-base"
             >
-              <span className="grid size-10 shrink-0 place-items-center rounded-lg border border-line bg-surface">
-                <img src={skill.icon} alt="" width={20} height={20} className="size-5" />
+              <span className="grid size-10 shrink-0 place-items-center border-2 border-black bg-cream">
+                <img src={skill.icon} alt="" width={22} height={22} className="size-[22px] [image-rendering:auto]" />
               </span>
               {skill.name}
             </li>

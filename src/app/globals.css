@@ -1,49 +1,41 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════════════════════
-   Minimalis: monokrom hangat, garis 1px, satu aksen hijau pucat.
-   Semua warna lewat token supaya mode gelap cukup menukar nilai.
+   Tema platformer 8-bit ala NES.
+   Hero = dunia atas (langit biru), konten = level bawah tanah (gelap).
+   Warna diambil dari palet konsol NES. Aksen utama: kuning koin.
    ═══════════════════════════════════════════════════════════════ */
 :root {
-  --canvas: #fbfbfa;
-  --surface: #ffffff;
-  --ink: #111111;
-  --ink-soft: #2f3437;
-  --muted: #787774;
-  --line: #eaeaea;
-  --line-strong: #d9d9d6;
-  --accent-bg: #edf3ec;
-  --accent-fg: #346538;
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --sky: #5c94fc;
+  --night: #0c0c24;          /* latar level bawah tanah */
+  --panel: #161640;          /* isi panel */
+  --panel-2: #20205a;
+  --cream: #fcfcfc;
+  --text: #e4e4fc;
+  --muted: #a4a4d8;
+  --black: #000000;
+  --coin: #fcb800;
+  --coin-light: #fcd860;
+  --brick: #c84c0c;
+  --grass: #00a844;
+  --px: 4px;                 /* tebal garis pixel */
+  --shadow: 6px 6px 0 var(--black);
 }
 
-:root:not([data-theme="light"]) {
-  @media (prefers-color-scheme: dark) {
-    --canvas: #121212;
-    --surface: #181817;
-    --ink: #ededec;
-    --ink-soft: #d4d4d2;
-    --muted: #9b9a97;
-    --line: #2a2a29;
-    --line-strong: #3a3a38;
-    --accent-bg: #1f2b20;
-    --accent-fg: #9ccf9f;
-  }
-}
-
-/* Token -> utilitas Tailwind: bg-canvas, text-ink, border-line, font-mono, dst. */
 @theme inline {
-  --color-canvas: var(--canvas);
-  --color-surface: var(--surface);
-  --color-ink: var(--ink);
-  --color-ink-soft: var(--ink-soft);
+  --color-sky: var(--sky);
+  --color-night: var(--night);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-cream: var(--cream);
+  --color-text: var(--text);
   --color-muted: var(--muted);
-  --color-line: var(--line);
-  --color-line-strong: var(--line-strong);
-  --color-accent-bg: var(--accent-bg);
-  --color-accent-fg: var(--accent-fg);
+  --color-coin: var(--coin);
+  --color-coin-light: var(--coin-light);
+  --color-brick: var(--brick);
+  --color-grass: var(--grass);
 
-  --font-sans: var(--font-geist-sans), "Helvetica Neue", Arial, sans-serif;
+  --font-pixel: var(--font-press-start), ui-monospace, monospace;
   --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
 }
 
@@ -51,24 +43,26 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
-    background: var(--canvas);
-    color-scheme: light dark;
+    background: var(--night);
+    color-scheme: dark;
   }
 
   body {
     min-height: 100dvh;
-    background: var(--canvas);
-    color: var(--ink-soft);
-    font-family: var(--font-sans);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
+    background: var(--night);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 16px;
+    line-height: 1.7;
   }
 
   h1,
   h2,
   h3 {
-    color: var(--ink);
+    font-family: var(--font-pixel);
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.5;
     text-wrap: balance;
   }
 
@@ -76,15 +70,19 @@
     text-wrap: pretty;
   }
 
+  img,
+  svg[shape-rendering="crispEdges"] {
+    image-rendering: pixelated;
+  }
+
   ::selection {
-    background: var(--ink);
-    color: var(--canvas);
+    background: var(--coin);
+    color: var(--black);
   }
 
   :focus-visible {
-    outline: 2px solid var(--ink);
+    outline: var(--px) solid var(--coin);
     outline-offset: 3px;
-    border-radius: 2px;
   }
 
   [tabindex="-1"]:focus {
@@ -93,18 +91,105 @@
 }
 
 @layer components {
-  /* Tautan teks dengan garis bawah tipis yang menebal saat hover */
+  /* Panel berbingkai pixel: garis tebal terang + bayangan keras tanpa blur */
+  .px-panel {
+    background: var(--panel);
+    border: var(--px) solid var(--cream);
+    box-shadow: var(--shadow);
+  }
+
+  /* Kotak dialog putih ala teks NPC */
+  .px-dialog {
+    background: var(--cream);
+    color: var(--black);
+    border: var(--px) solid var(--black);
+    box-shadow: var(--shadow);
+  }
+
+  /* Tombol koin: ditekan turun 4px seperti tombol fisik */
+  .px-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 1.25rem;
+    font-family: var(--font-pixel);
+    font-size: 0.75rem;
+    line-height: 1;
+    color: var(--black);
+    background: var(--coin);
+    border: var(--px) solid var(--black);
+    box-shadow:
+      inset -4px -4px 0 #c88400,
+      inset 4px 4px 0 var(--coin-light),
+      0 4px 0 var(--black);
+    transition:
+      transform 80ms steps(2),
+      box-shadow 80ms steps(2),
+      background-color 120ms;
+  }
+
+  .px-btn:hover {
+    background: var(--coin-light);
+  }
+
+  .px-btn:active {
+    transform: translateY(4px);
+    box-shadow:
+      inset -4px -4px 0 #c88400,
+      inset 4px 4px 0 var(--coin-light),
+      0 0 0 var(--black);
+  }
+
+  /* Varian gelap untuk aksi kedua */
+  .px-btn--ghost {
+    color: var(--cream);
+    background: var(--panel-2);
+    box-shadow:
+      inset -4px -4px 0 #10103a,
+      inset 4px 4px 0 #34348a,
+      0 4px 0 var(--black);
+  }
+
+  .px-btn--ghost:hover {
+    background: #2c2c76;
+  }
+
+  .px-btn--ghost:active {
+    box-shadow:
+      inset -4px -4px 0 #10103a,
+      inset 4px 4px 0 #34348a,
+      0 0 0 var(--black);
+  }
+
+  /* Label kecil berhuruf pixel, mis. ROLE, FOCUS */
+  .px-label {
+    font-family: var(--font-pixel);
+    font-size: 0.625rem;
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* Baris tanah bata, diulang dari satu ubin 16px yang diperbesar 2x */
+  .px-ground {
+    height: 64px;
+    background-image: url("/pixel/ground.svg");
+    background-size: 32px 32px;
+    background-repeat: repeat;
+    image-rendering: pixelated;
+    border-top: var(--px) solid var(--black);
+  }
+
   .text-link {
-    color: var(--ink);
+    color: var(--coin);
     text-decoration: underline;
-    text-decoration-color: var(--line-strong);
-    text-decoration-thickness: 1px;
+    text-decoration-thickness: 2px;
     text-underline-offset: 4px;
-    transition: text-decoration-color 200ms var(--ease-out);
   }
 
   .text-link:hover {
-    text-decoration-color: var(--ink);
+    color: var(--coin-light);
   }
 
   .skip-link {
@@ -113,25 +198,20 @@
     top: 1rem;
     transform: translateY(-200%);
     z-index: 50;
-    padding: 0.5rem 0.875rem;
-    border-radius: 6px;
-    background: var(--ink);
-    color: var(--canvas);
-    font-size: 0.875rem;
   }
 
   .skip-link:focus-visible {
     transform: none;
   }
 
-  /* Muncul halus saat masuk layar (diatur oleh <Reveal />) */
+  /* Muncul saat masuk layar (diatur oleh <Reveal />), bergerak bertahap seperti sprite */
   [data-reveal] {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(16px);
     transition:
-      opacity 600ms var(--ease-out),
-      transform 600ms var(--ease-out);
-    transition-delay: calc(var(--i, 0) * 80ms);
+      opacity 400ms steps(4),
+      transform 400ms steps(4);
+    transition-delay: calc(var(--i, 0) * 90ms);
   }
 
   [data-reveal="in"] {
@@ -139,11 +219,50 @@
     transform: none;
   }
 
-  /* Tanpa JS atau gerak dikurangi: langsung tampil */
   .no-js [data-reveal] {
     opacity: 1;
     transform: none;
   }
+
+  /* Animasi dekoratif */
+  .px-drift {
+    animation: px-drift 60s linear infinite;
+  }
+
+  .px-bob {
+    animation: px-bob 1.2s steps(2) infinite;
+  }
+
+  .px-spin {
+    animation: px-spin 0.9s steps(4) infinite;
+  }
+
+  .px-blink {
+    animation: px-blink 1s steps(1) infinite;
+  }
+}
+
+@keyframes px-drift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-60px); }
+}
+
+@keyframes px-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+
+/* Koin berputar: dipipihkan lalu dibalik */
+@keyframes px-spin {
+  0%   { transform: scaleX(1); }
+  25%  { transform: scaleX(0.5); }
+  50%  { transform: scaleX(0.15); }
+  75%  { transform: scaleX(0.5); }
+  100% { transform: scaleX(1); }
+}
+
+@keyframes px-blink {
+  50% { opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -160,8 +279,7 @@
   *,
   *::before,
   *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
+    animation: none !important;
     transition-duration: 0.001ms !important;
   }
 }

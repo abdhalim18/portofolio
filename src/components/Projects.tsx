@@ -1,5 +1,3 @@
-import { ArrowUpRight } from '@phosphor-icons/react/dist/ssr';
-
 const projects = [
     {
         id: 1,
@@ -59,32 +57,39 @@ const projects = [
     },
 ];
 
-/** Daftar proyek: judul dan teknologi di kiri, deskripsi di kanan, garis tipis di antara baris. */
+/** Proyek sebagai "stage": kartu berbingkai pixel, dua kolom di desktop. */
 export default function Projects() {
     return (
-        <ul className="border-t border-line">
+        <ul className="grid gap-8 md:grid-cols-2">
             {projects.map((project, i) => (
-                <li key={project.id} data-reveal style={{ '--i': Math.min(i, 3) } as React.CSSProperties} className="border-b border-line">
+                <li
+                    key={project.id}
+                    data-reveal
+                    style={{ '--i': i % 2 } as React.CSSProperties}
+                    className={i === projects.length - 1 && projects.length % 2 === 1 ? 'md:col-span-2' : ''}
+                >
                     <a
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group grid gap-3 py-8 transition-colors duration-200 md:grid-cols-12 md:gap-8"
+                        className="px-panel group flex h-full flex-col p-6 transition-transform duration-100 hover:-translate-y-1 active:translate-y-0"
                     >
-                        <div className="md:col-span-5">
-                            <h2 className="text-xl font-semibold tracking-tight transition-colors duration-200 group-hover:text-ink">
-                                {project.title}
-                            </h2>
-                            <p className="mt-2 font-mono text-xs text-muted">{project.tags.join(', ')}</p>
-                        </div>
-                        <p className="text-muted md:col-span-6">{project.description}</p>
-                        <span className="hidden justify-self-end md:col-span-1 md:block" aria-hidden="true">
-                            <ArrowUpRight
-                                weight="bold"
-                                className="size-5 text-muted transition-[color,transform] duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink"
-                            />
+                        <span className="px-label text-coin">STAGE {i + 1}</span>
+                        <h2 className="mt-3 text-sm leading-relaxed group-hover:text-coin sm:text-base sm:leading-relaxed">
+                            {project.title}
+                        </h2>
+                        <p className="mt-4 text-muted">{project.description}</p>
+                        <ul className="mt-5 flex flex-wrap gap-2" aria-label="Built with">
+                            {project.tags.map((tag) => (
+                                <li key={tag} className="border-2 border-black bg-panel-2 px-2 py-0.5 text-xs text-cream">
+                                    {tag}
+                                </li>
+                            ))}
+                        </ul>
+                        <span className="mt-auto pt-6 font-pixel text-[0.625rem] text-cream group-hover:text-coin">
+                            PLAY <span aria-hidden="true">▶</span>
+                            <span className="sr-only"> (opens in a new tab)</span>
                         </span>
-                        <span className="sr-only"> (opens in a new tab)</span>
                     </a>
                 </li>
             ))}

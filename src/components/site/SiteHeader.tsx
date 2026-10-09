@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import PixelArt from '@/components/pixel/PixelArt';
+import { COIN } from '@/components/pixel/sprites';
 import { CV_URL } from '@/lib/site';
 
 const NAV = [
@@ -9,19 +11,24 @@ const NAV = [
   { href: '/contact', label: 'Contact' },
 ];
 
-/** Header tipis satu baris: nama di kiri, navigasi di kanan. */
+/** Header hitam seperti HUD game: nama di kiri, navigasi di kanan. */
 export default function SiteHeader() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-canvas/85 backdrop-blur-md">
-      <div className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between gap-6 px-5 sm:px-8">
-        <Link href="/" className="text-[15px] font-semibold tracking-tight text-ink" aria-current={pathname === '/' ? 'page' : undefined}>
-          Abdul Halim
+    <header className="sticky top-0 z-40 border-b-4 border-black bg-black">
+      <div className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between gap-4 px-4 sm:px-8">
+        <Link
+          href="/"
+          aria-current={pathname === '/' ? 'page' : undefined}
+          className="group flex items-center gap-2.5 font-pixel text-[0.5625rem] whitespace-nowrap text-cream sm:text-xs"
+        >
+          <PixelArt {...COIN} scale={2} className="hidden shrink-0 group-hover:[animation:px-spin_0.9s_steps(4)_infinite] sm:block" />
+          <span translate="no">ABDUL HALIM</span>
         </Link>
 
         <nav aria-label="Main">
-          <ul className="flex items-center gap-1 text-[15px] sm:gap-2">
+          <ul className="flex items-center gap-0.5 font-pixel text-[0.5625rem] whitespace-nowrap sm:gap-3 sm:text-xs">
             {NAV.map((item) => {
               const current = pathname === item.href;
               return (
@@ -29,20 +36,18 @@ export default function SiteHeader() {
                   <Link
                     href={item.href}
                     aria-current={current ? 'page' : undefined}
-                    className={`rounded-md px-3 py-2 transition-colors duration-200 hover:text-ink ${current ? 'text-ink' : 'text-muted'}`}
+                    className={`flex items-center gap-1.5 px-1.5 py-3 transition-colors hover:text-coin sm:px-2 ${current ? 'text-coin' : 'text-cream'}`}
                   >
-                    {item.label}
+                    <span aria-hidden="true" className={`hidden sm:inline ${current ? '' : 'invisible'}`}>
+                      ▶
+                    </span>
+                    {item.label.toUpperCase()}
                   </Link>
                 </li>
               );
             })}
-            <li>
-              <a
-                href={CV_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ml-1 inline-flex items-center rounded-md bg-ink px-3.5 py-2 font-medium text-canvas transition-[opacity,transform] duration-200 hover:opacity-85 active:scale-[0.98]"
-              >
+            <li className="ml-1">
+              <a href={CV_URL} target="_blank" rel="noopener noreferrer" className="px-btn !px-3 !py-2.5 !text-[0.625rem]">
                 CV
                 <span className="sr-only"> (opens Google Drive in a new tab)</span>
               </a>

@@ -25,15 +25,15 @@ export default function WorkoutPanel() {
         ].filter((s): s is { label: string; value: string } => s.value !== null);
         return (
           <div>
-            <p className="truncate text-lg font-medium text-ink" title={a.name}>
+            <p className="truncate text-lg font-semibold text-cream" title={a.name}>
               {a.name}
             </p>
             <p className="font-mono text-xs text-muted">{timeAgo(a.startDate)}</p>
             <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-4">
               {stats.map((s) => (
                 <div key={s.label}>
-                  <dt className="font-mono text-xs text-muted">{s.label}</dt>
-                  <dd className="mt-0.5 text-lg text-ink tabular-nums">{s.value}</dd>
+                  <dt className="px-label">{s.label}</dt>
+                  <dd className="mt-1 text-lg text-cream tabular-nums">{s.value}</dd>
                 </div>
               ))}
             </dl>

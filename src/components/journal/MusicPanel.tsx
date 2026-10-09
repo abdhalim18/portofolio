@@ -25,21 +25,21 @@ export default function MusicPanel() {
                 alt={t.album ? `Album cover: ${t.album}` : ''}
                 width={80}
                 height={80}
-                className="size-20 shrink-0 rounded-md border border-line object-cover"
+                className="size-20 shrink-0 border-4 border-black object-cover [image-rendering:auto]"
               />
             ) : null}
             <div className="min-w-0">
               <p className="flex items-center gap-2 font-mono text-xs text-muted" aria-live="polite">
                 {t.isPlaying ? (
                   <>
-                    <span aria-hidden="true" className="size-1.5 animate-pulse rounded-full bg-accent-fg" />
-                    <span className="text-accent-fg">Now playing</span>
+                    <span aria-hidden="true" className="px-blink inline-block size-2 bg-grass" />
+                    <span className="text-grass">Now playing</span>
                   </>
                 ) : (
                   <>Last played {t.playedAt ? timeAgo(t.playedAt) : ''}</>
                 )}
               </p>
-              <p className="mt-2 truncate text-lg font-medium text-ink" title={t.title}>
+              <p className="mt-2 truncate text-lg font-semibold text-cream" title={t.title}>
                 {t.title}
               </p>
               <p className="truncate text-muted" title={t.artist}>
