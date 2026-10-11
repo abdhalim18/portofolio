@@ -1,88 +1,81 @@
-const reactIcon = '/icons/react.svg';
-const typescriptIcon = '/icons/typescript.svg';
-const nextjsIcon = '/icons/nextjs.svg';
-const tailwindcssIcon = '/icons/tailwindcss.svg';
-const nodejsIcon = '/icons/nodejs.svg';
-const laravelIcon = '/icons/laravel.svg';
-const phpIcon = '/icons/php.svg';
-const mysqlIcon = '/icons/mysql.svg';
-const postgresqlIcon = '/icons/postgresql.svg';
-const figmaIcon = '/icons/figma.svg';
-const javascriptIcon = '/icons/javascript.svg';
-const html5Icon = '/icons/html5.svg';
-
 const skills = [
-    { name: 'React', icon: reactIcon },
-    { name: 'TypeScript', icon: typescriptIcon },
-    { name: 'Next.js', icon: nextjsIcon },
-    { name: 'Tailwind CSS', icon: tailwindcssIcon },
-    { name: 'Node.js', icon: nodejsIcon },
-    { name: 'Laravel', icon: laravelIcon },
-    { name: 'PHP', icon: phpIcon },
-    { name: 'MySQL', icon: mysqlIcon },
-    { name: 'PostgreSQL', icon: postgresqlIcon },
-    { name: 'Figma', icon: figmaIcon },
-    { name: 'JavaScript', icon: javascriptIcon },
-    { name: 'HTML/CSS', icon: html5Icon },
+  { name: 'React', icon: '/icons/react.svg' },
+  { name: 'TypeScript', icon: '/icons/typescript.svg' },
+  { name: 'Next.js', icon: '/icons/nextjs.svg' },
+  { name: 'Tailwind CSS', icon: '/icons/tailwindcss.svg' },
+  { name: 'Node.js', icon: '/icons/nodejs.svg' },
+  { name: 'Laravel', icon: '/icons/laravel.svg' },
+  { name: 'PHP', icon: '/icons/php.svg' },
+  { name: 'MySQL', icon: '/icons/mysql.svg' },
+  { name: 'PostgreSQL', icon: '/icons/postgresql.svg' },
+  { name: 'Figma', icon: '/icons/figma.svg' },
+  { name: 'JavaScript', icon: '/icons/javascript.svg' },
+  { name: 'HTML/CSS', icon: '/icons/html5.svg' },
 ];
 
-const specs = [
-    { label: 'Role', value: 'Web Developer' },
-    { label: 'Focus', value: 'Front-end & UI Systems' },
-    { label: 'Study', value: 'Information Systems Graduate' },
-    { label: 'Status', value: 'Open to full-time roles & collab' },
+const facts = [
+  { label: 'Role', value: 'Web Developer' },
+  { label: 'Focus', value: 'Front-end and UI systems' },
+  { label: 'Study', value: 'Information Systems graduate' },
+  { label: 'Status', value: 'Open to full-time roles and collaborations' },
 ];
 
-const About = () => {
-    const track = [...skills, ...skills];
+/** About: cerita singkat di kiri, "stat pemain" di panel kanan. */
+export default function About() {
+  return (
+    <section id="about-me" aria-labelledby="about-title" className="scroll-mt-20">
+      <div className="mx-auto grid w-full max-w-5xl gap-10 px-4 py-20 sm:px-8 md:grid-cols-12 md:py-24">
+        <div className="md:col-span-7">
+          <h2 id="about-title" data-reveal className="text-lg sm:text-xl [text-shadow:4px_4px_0_#000]">
+            ABOUT ME
+          </h2>
+          <p data-reveal className="mt-8 font-pixel text-sm leading-loose text-cream sm:text-base sm:leading-loose">
+            I turn complex problems into simple, intuitive web products.
+          </p>
+          <p data-reveal className="mt-6 max-w-[58ch] text-[17px] text-muted">
+            I recently graduated in Information Systems with a focus on web development. I&apos;m looking for a
+            full-time role or a project team where I can ship real work, learn from experienced engineers, and keep
+            getting better at the craft.
+          </p>
+        </div>
 
-    return (
-        <section id="about" className="about section">
-            <div className="container">
-                <div data-reveal className="section-head">
-                    <span className="section-index">01 — About</span>
-                    <h2 className="section-title">A bit about me</h2>
-                </div>
-
-                <div className="about-grid">
-                    <div data-reveal>
-                        <p className="about-intro">
-                            I enjoy turning complex problems into simple, beautiful,
-                            and intuitive digital solutions.
-                        </p>
-                        <p className="about-body">
-                            A recent Information Systems graduate with a deep focus on web
-                            development. I'm actively seeking full-time roles or
-                            collaborative projects where I can apply my skills, learn from
-                            experienced professionals, and create meaningful impact through
-                            technology.
-                        </p>
-                    </div>
-
-                    <dl data-reveal className="about-specs">
-                        {specs.map((spec) => (
-                            <div className="about-spec-row" key={spec.label}>
-                                <dt>{spec.label}</dt>
-                                <dd>{spec.value}</dd>
-                            </div>
-                        ))}
-                    </dl>
-                </div>
-
-                <div className="marquee-wrap">
-                    <div className="marquee-track">
-                        {track.map((skill, i) => (
-                            <span className="marquee-item" key={`${skill.name}-${i}`}>
-                                <img src={skill.icon} alt="" aria-hidden="true" />
-                                {skill.name}
-                                <span className="marquee-sep" aria-hidden="true">/</span>
-                            </span>
-                        ))}
-                    </div>
-                </div>
+        <dl data-reveal style={{ '--i': 1 } as React.CSSProperties} className="px-panel self-start p-6 md:col-span-5">
+          {facts.map((f, i) => (
+            <div key={f.label} className={i > 0 ? 'mt-5 border-t-4 border-dashed border-panel-2 pt-5' : ''}>
+              <dt className="px-label">{f.label}</dt>
+              <dd className="mt-1.5 text-[17px] text-cream">{f.value}</dd>
             </div>
-        </section>
-    );
-};
+          ))}
+        </dl>
+      </div>
+    </section>
+  );
+}
 
-export default About;
+/** Skills: kotak-kotak item seperti inventori. */
+export function Skills() {
+  return (
+    <section id="skills" aria-labelledby="skills-title" className="scroll-mt-20">
+      <div className="mx-auto w-full max-w-5xl px-4 py-20 sm:px-8 md:py-24">
+        <h2 id="skills-title" data-reveal className="text-lg sm:text-xl [text-shadow:4px_4px_0_#000]">
+          TOOLS I WORK WITH
+        </h2>
+        <ul className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+          {skills.map((skill, i) => (
+            <li
+              key={skill.name}
+              data-reveal
+              style={{ '--i': i % 4 } as React.CSSProperties}
+              className="flex items-center gap-3 border-4 border-black bg-panel-2 p-3 text-[15px] text-cream shadow-[4px_4px_0_#000] sm:text-base"
+            >
+              <span className="grid size-10 shrink-0 place-items-center border-2 border-black bg-cream">
+                <img src={skill.icon} alt="" width={22} height={22} className="size-[22px] [image-rendering:auto]" />
+              </span>
+              {skill.name}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}

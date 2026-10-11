@@ -1,329 +1,304 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════════════════════
-   FINAL FANTASY CLASSIC UI — Global tokens
-   Semua warna, font, dan efek tema dikumpulkan di sini supaya
-   section lain (About, Magic, Save Data, Dialogue) tinggal pakai.
+   Tema platformer 8-bit ala NES.
+   Hero = dunia atas (langit biru), konten = level bawah tanah (gelap).
+   Warna diambil dari palet konsol NES. Aksen utama: kuning koin.
    ═══════════════════════════════════════════════════════════════ */
 :root {
-  /* Menu box (FF6 / FF7 style) */
-  --ff-blue-top: #000080;
-  --ff-blue-bottom: #000040;
-  --ff-border: #f4f4fc;
-  --ff-border-outer: #08081e;
-  --ff-border-inner: #4848a8;
-
-  /* Teks */
-  --ff-text: #ffffff;
-  --ff-text-dim: #c4c4e4;
-  --ff-text-muted: #8c8cc0;
-  --ff-active: #ffde3a;        /* kuning menu aktif */
-  --ff-hp: #7cf0a0;
-  --ff-mp: #7ab8ff;
-  --ff-danger: #ff6a6a;
-
-  /* Layar */
-  --ff-void: #000010;          /* "hitam" layar game */
-
-  /* Kursor sarung tangan. Hotspot (31, 8) = ujung jari telunjuk. */
-  --ff-cursor: url("/cursors/ff-hand.svg") 31 8, url("/cursors/ff-hand.png") 31 8, auto;
-
-  --ff-radius: 6px;
-  --ff-pixel-shadow: 2px 2px 0 #000018;
+  --sky: #5c94fc;
+  --night: #0c0c24;          /* latar level bawah tanah */
+  --panel: #161640;          /* isi panel */
+  --panel-2: #20205a;
+  --cream: #fcfcfc;
+  --text: #e4e4fc;
+  --muted: #a4a4d8;
+  --black: #000000;
+  --coin: #fcb800;
+  --coin-light: #fcd860;
+  --brick: #c84c0c;
+  --grass: #00a844;
+  --px: 4px;                 /* tebal garis pixel */
+  --shadow: 6px 6px 0 var(--black);
 }
 
-/* Hubungkan token ke Tailwind: bg-ff-blue, text-ff-active, font-pixel, dst. */
 @theme inline {
-  --color-ff-blue: var(--ff-blue-top);
-  --color-ff-navy: var(--ff-blue-bottom);
-  --color-ff-void: var(--ff-void);
-  --color-ff-text: var(--ff-text);
-  --color-ff-dim: var(--ff-text-dim);
-  --color-ff-muted: var(--ff-text-muted);
-  --color-ff-active: var(--ff-active);
-  --color-ff-hp: var(--ff-hp);
-  --color-ff-mp: var(--ff-mp);
-  --color-ff-danger: var(--ff-danger);
+  --color-sky: var(--sky);
+  --color-night: var(--night);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-cream: var(--cream);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-coin: var(--coin);
+  --color-coin-light: var(--coin-light);
+  --color-brick: var(--brick);
+  --color-grass: var(--grass);
 
   --font-pixel: var(--font-press-start), ui-monospace, monospace;
-  --font-terminal: var(--font-vt323), ui-monospace, monospace;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   Base
-   ═══════════════════════════════════════════════════════════════ */
 @layer base {
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
-    background: var(--ff-void);
+    background: var(--night);
     color-scheme: dark;
   }
 
   body {
     min-height: 100dvh;
-    background:
-      radial-gradient(ellipse at 50% 0%, #0a0a3a 0%, transparent 60%),
-      var(--ff-void);
-    color: var(--ff-text);
-    font-family: var(--font-terminal);
-    font-size: 1.25rem;          /* VT323 terlihat kecil, jadi base dinaikkan */
-    line-height: 1.35;
-    cursor: var(--ff-cursor);
-    -webkit-font-smoothing: none; /* pixel tetap tajam */
-    font-smooth: never;
-    overflow-x: hidden;
+    background: var(--night);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 16px;
+    line-height: 1.7;
   }
 
-  /* Kursor tangan juga dipakai di elemen interaktif (bukan "pointer" bawaan) */
-  a,
-  button,
-  summary,
-  label,
-  [role="button"],
-  [data-sfx] {
-    cursor: var(--ff-cursor);
-  }
-
-  /* Input teks tetap pakai I-beam agar jelas bisa diketik */
-  input,
-  textarea,
-  [contenteditable="true"] {
-    cursor: text;
-  }
-
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     font-family: var(--font-pixel);
     font-weight: 400;
-    line-height: 1.4;
-    text-shadow: var(--ff-pixel-shadow);
+    color: var(--cream);
+    line-height: 1.5;
+    text-wrap: balance;
   }
 
-  img {
+  p {
+    text-wrap: pretty;
+  }
+
+  img,
+  svg[shape-rendering="crispEdges"] {
     image-rendering: pixelated;
   }
 
   ::selection {
-    background: var(--ff-active);
-    color: var(--ff-blue-bottom);
+    background: var(--coin);
+    color: var(--black);
   }
 
   :focus-visible {
-    outline: 2px dashed var(--ff-active);
-    outline-offset: 4px;
+    outline: var(--px) solid var(--coin);
+    outline-offset: 3px;
   }
 
-  /* Section yang menerima fokus setelah transisi tidak perlu outline */
   [tabindex="-1"]:focus {
     outline: none;
   }
-
-  ::-webkit-scrollbar { width: 10px; }
-  ::-webkit-scrollbar-track { background: var(--ff-blue-bottom); }
-  ::-webkit-scrollbar-thumb {
-    background: var(--ff-border);
-    border: 2px solid var(--ff-blue-bottom);
-    border-radius: 2px;
-  }
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   Komponen FF
-   ═══════════════════════════════════════════════════════════════ */
 @layer components {
-  /* ── Menu Box ikonik ─────────────────────────────────────────
-     Gradient biru + border putih tebal + cincin gelap di luar +
-     bevel biru di dalam, persis jendela menu SNES/PS1.          */
-  .ff-box {
-    position: relative;
-    background: linear-gradient(180deg, var(--ff-blue-top) 0%, var(--ff-blue-bottom) 100%);
-    border: 3px solid var(--ff-border);
-    border-radius: var(--ff-radius);
-    box-shadow:
-      0 0 0 2px var(--ff-border-outer),
-      inset 0 0 0 2px var(--ff-border-inner),
-      inset 0 10px 18px -10px rgb(255 255 255 / 0.18),
-      0 8px 0 0 rgb(0 0 16 / 0.55);
-    color: var(--ff-text);
-    text-shadow: var(--ff-pixel-shadow);
+  /* Panel berbingkai pixel: garis tebal terang + bayangan keras tanpa blur */
+  .px-panel {
+    background: var(--panel);
+    border: var(--px) solid var(--cream);
+    box-shadow: var(--shadow);
   }
 
-  /* Varian jendela teks/dialog: sedikit transparan seperti FF7 */
-  .ff-box--glass {
-    background: linear-gradient(180deg, rgb(0 0 128 / 0.88) 0%, rgb(0 0 64 / 0.92) 100%);
-    backdrop-filter: blur(2px);
+  /* Kotak dialog putih ala teks NPC */
+  .px-dialog {
+    background: var(--cream);
+    color: var(--black);
+    border: var(--px) solid var(--black);
+    box-shadow: var(--shadow);
   }
 
-  /* Judul kecil di dalam box, mis. "STATUS", "MAGIC" */
-  .ff-label {
-    font-family: var(--font-pixel);
-    font-size: 0.625rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ff-text-muted);
-  }
-
-  /* ── Menu list + kursor tangan ────────────────────────────── */
-  .ff-menu-item {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    min-height: 44px;            /* hit area nyaman di layar sentuh */
-    padding-left: 2.5rem;        /* ruang untuk tangan penunjuk */
-    font-family: var(--font-pixel);
-    font-size: 0.8125rem;
-    line-height: 1.6;
-    color: var(--ff-text);
-    text-decoration: none;
-    text-shadow: var(--ff-pixel-shadow);
-    transition: color 80ms steps(1);
-  }
-
-  .ff-menu-item[data-active="true"],
-  .ff-menu-item:focus-visible {
-    color: var(--ff-active);
-  }
-
-  .ff-menu-item:focus-visible {
-    outline: none;               /* tangan + warna kuning jadi indikator fokus */
-  }
-
-  .ff-menu-item .ff-hand {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 32px;
-    height: 26px;
-    translate: 0 -50%;
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .ff-menu-item[data-active="true"] .ff-hand,
-  .ff-menu-item:focus-visible .ff-hand {
-    opacity: 1;
-    animation: ff-nudge 0.6s steps(2, jump-none) infinite;
-  }
-
-  /* Tombol bergaya menu (dipakai juga oleh dialog/kontak nanti) */
-  .ff-button {
+  /* Tombol koin: ditekan turun 4px seperti tombol fisik */
+  .px-btn {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    min-height: 44px;
-    padding: 0.5rem 1rem;
+    gap: 0.75rem;
+    padding: 0.9rem 1.25rem;
     font-family: var(--font-pixel);
-    font-size: 0.6875rem;
-    color: var(--ff-text);
-    text-shadow: var(--ff-pixel-shadow);
-    background: linear-gradient(180deg, var(--ff-blue-top), var(--ff-blue-bottom));
-    border: 2px solid var(--ff-border);
-    border-radius: 4px;
-    box-shadow: 0 0 0 2px var(--ff-border-outer);
+    font-size: 0.75rem;
+    line-height: 1;
+    color: var(--black);
+    background: var(--coin);
+    border: var(--px) solid var(--black);
+    box-shadow:
+      inset -4px -4px 0 #c88400,
+      inset 4px 4px 0 var(--coin-light),
+      0 4px 0 var(--black);
+    transition:
+      transform 80ms steps(2),
+      box-shadow 80ms steps(2),
+      background-color 120ms;
   }
 
-  .ff-button:hover,
-  .ff-button:focus-visible {
-    color: var(--ff-active);
+  .px-btn:hover {
+    background: var(--coin-light);
   }
 
-  /* ── Animasi ──────────────────────────────────────────────── */
-  .ff-blink {
-    animation: ff-blink 1.1s steps(1, end) infinite;
+  .px-btn:active {
+    transform: translateY(4px);
+    box-shadow:
+      inset -4px -4px 0 #c88400,
+      inset 4px 4px 0 var(--coin-light),
+      0 0 0 var(--black);
   }
 
-  .ff-blink-fast {
-    animation: ff-blink 0.12s steps(1, end) infinite;
+  /* Varian gelap untuk aksi kedua */
+  .px-btn--ghost {
+    color: var(--cream);
+    background: var(--panel-2);
+    box-shadow:
+      inset -4px -4px 0 #10103a,
+      inset 4px 4px 0 #34348a,
+      0 4px 0 var(--black);
   }
 
-  /* ── Overlay CRT scanline (sangat halus) ──────────────────── */
-  .ff-scanlines {
-    position: fixed;
-    inset: 0;
-    z-index: 60;
-    pointer-events: none;
-    background: repeating-linear-gradient(
-      to bottom,
-      rgb(0 0 0 / 0) 0px,
-      rgb(0 0 0 / 0) 2px,
-      rgb(0 0 0 / 0.12) 3px
-    );
-    mix-blend-mode: multiply;
+  .px-btn--ghost:hover {
+    background: #2c2c76;
   }
 
-  /* ── Transisi "random encounter" ─────────────────────────── */
-  .ff-wipe {
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-    pointer-events: none;
-    visibility: hidden;
-    display: grid;
-    grid-template-rows: repeat(var(--stripes, 12), 1fr);
+  .px-btn--ghost:active {
+    box-shadow:
+      inset -4px -4px 0 #10103a,
+      inset 4px 4px 0 #34348a,
+      0 0 0 var(--black);
   }
 
-  .ff-wipe__stripe {
-    background: #000;
-    transform: scaleX(0);
-    transform-origin: left center;
+  /* Label kecil berhuruf pixel, mis. ROLE, FOCUS */
+  .px-label {
+    font-family: var(--font-pixel);
+    font-size: 0.625rem;
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    text-transform: uppercase;
   }
 
-  .ff-wipe__stripe:nth-child(even) {
-    transform-origin: right center;
+  /* Baris tanah bata, diulang dari satu ubin 16px yang diperbesar 2x */
+  .px-ground {
+    height: 64px;
+    background-image: url("/pixel/ground.svg");
+    background-size: 32px 32px;
+    background-repeat: repeat;
+    image-rendering: pixelated;
+    border-top: var(--px) solid var(--black);
   }
 
-  .ff-wipe__flash {
-    position: absolute;
-    inset: 0;
-    background: #fff;
-    opacity: 0;
+  .text-link {
+    color: var(--coin);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+
+  .text-link:hover {
+    color: var(--coin-light);
   }
 
   .skip-link {
     position: fixed;
     left: 1rem;
-    top: -100px;
-    z-index: 110;
+    top: 1rem;
+    transform: translateY(-200%);
+    z-index: 50;
   }
 
   .skip-link:focus-visible {
-    top: 1rem;
+    transform: none;
+  }
+
+  /* Muncul saat masuk layar (diatur oleh <Reveal />), bergerak bertahap seperti sprite */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 400ms steps(4),
+      transform 400ms steps(4);
+    transition-delay: calc(var(--i, 0) * 90ms);
+  }
+
+  [data-reveal="in"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .no-js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Animasi dekoratif */
+  .px-drift {
+    animation: px-drift 60s linear infinite;
+  }
+
+  .px-bob {
+    animation: px-bob 1.2s steps(2) infinite;
+  }
+
+  .px-spin {
+    animation: px-spin 0.9s steps(4) infinite;
+  }
+
+  .px-blink {
+    animation: px-blink 1s steps(1) infinite;
+  }
+
+  /* Blok terpukul dari bawah */
+  .px-bump {
+    animation: px-bump 180ms steps(3);
+  }
+
+  /* Papan tautan keluar dari blok */
+  .px-pop {
+    animation: px-pop 300ms steps(3);
   }
 }
 
-@keyframes ff-blink {
-  0%   { opacity: 1; }
-  50%  { opacity: 0; }
+@keyframes px-drift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-60px); }
 }
 
-/* Tangan "mengetuk" maju-mundur 2px seperti di game */
-@keyframes ff-nudge {
-  0%   { transform: translateX(-3px); }
-  100% { transform: translateX(0); }
+@keyframes px-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
 }
 
-@keyframes ff-twinkle {
-  0%, 100% { opacity: 0.25; }
-  50%      { opacity: 1; }
+/* Koin berputar: dipipihkan lalu dibalik */
+@keyframes px-spin {
+  0%   { transform: scaleX(1); }
+  25%  { transform: scaleX(0.5); }
+  50%  { transform: scaleX(0.15); }
+  75%  { transform: scaleX(0.5); }
+  100% { transform: scaleX(1); }
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   Reduced motion: matikan kedip & loop, tetap tampil statis
-   ═══════════════════════════════════════════════════════════════ */
+@keyframes px-bump {
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes px-pop {
+  from { opacity: 0; translate: -50% 16px; }
+  to   { opacity: 1; translate: -50% 0; }
+}
+
+@keyframes px-blink {
+  50% { opacity: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
+  html {
+    scroll-behavior: auto;
   }
 
-  .ff-blink,
-  .ff-blink-fast {
-    animation: none !important;
+  [data-reveal] {
     opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.001ms !important;
   }
 }

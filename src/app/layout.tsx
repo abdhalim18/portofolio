@@ -1,53 +1,49 @@
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
-import { Press_Start_2P, VT323 } from 'next/font/google';
-import ScreenTransition from '@/components/ff/ScreenTransition';
-import SoundToggle from '@/components/ff/SoundToggle';
+import localFont from 'next/font/local';
+import { GeistMono } from 'geist/font/mono';
+import SiteHeader from '@/components/site/SiteHeader';
+import SiteFooter from '@/components/site/SiteFooter';
+import Reveal from '@/components/site/Reveal';
 import './globals.css';
-import './legacy-sections.css';
 
-// Font judul/menu (pixel tebal) dan font teks panjang (terminal, lebih mudah dibaca).
-const pressStart = Press_Start_2P({
-  weight: '400',
-  subsets: ['latin'],
+// Font pixel disimpan di repo (lisensi OFL ada di folder fonts), jadi build tidak perlu internet.
+const pressStart = localFont({
+  src: './fonts/PressStart2P-latin.woff2',
   display: 'swap',
   variable: '--font-press-start',
 });
 
-const vt323 = VT323({
-  weight: '400',
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-vt323',
-});
-
 export const metadata: Metadata = {
   title: {
-    default: 'Abdul Halim — Web Developer Portfolio',
+    default: 'Abdul Halim - Web Developer',
     template: '%s · Abdul Halim',
   },
   description:
-    'Muhammad Abdul Halim — Web Developer & UI/UX Enthusiast. Building pixel-perfect, engaging, and accessible digital experiences.',
+    'Muhammad Abdul Halim, web developer focused on front-end and UI systems. Projects, live journal, and contact.',
   icons: { icon: '/favicon.svg' },
 };
 
 export const viewport: Viewport = {
-  themeColor: '#000040',
+  themeColor: '#000000',
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    // suppressHydrationWarning: ekstensi/terjemahan browser (mis. Google Translate) sering
-    // mengubah atribut lang & class di <html> sebelum React hydrate. Hanya berlaku untuk
-    // atribut <html> ini saja, tidak menyembunyikan mismatch di elemen lain.
-    <html lang="en" className={`${pressStart.variable} ${vt323.variable}`} suppressHydrationWarning>
+    // suppressHydrationWarning: class "no-js" dihapus skrip kecil di bawah sebelum React hydrate,
+    // dan ekstensi/terjemahan browser sering mengubah atribut <html>.
+    <html lang="en" className={`no-js ${pressStart.variable} ${GeistMono.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.remove('no-js')" }} />
+      </head>
       <body>
-        <a href="#main" className="skip-link ff-button">
+        <a href="#main" className="skip-link px-btn">
           Skip to content
         </a>
-        <SoundToggle />
-        <ScreenTransition>{children}</ScreenTransition>
-        <div className="ff-scanlines" aria-hidden="true" />
+        <SiteHeader />
+        {children}
+        <SiteFooter />
+        <Reveal />
       </body>
     </html>
   );
