@@ -1,4 +1,13 @@
-const projects = [
+type Project = {
+    id: number;
+    title: string;
+    description: string;
+    tags: string[];
+    /** Kosongkan jika belum ada link publik; kartu tampil tanpa tombol PLAY. */
+    link?: string;
+};
+
+const softwareProjects: Project[] = [
     {
         id: 1,
         title: 'Edit Tone Photo',
@@ -57,42 +66,96 @@ const projects = [
     },
 ];
 
-/** Proyek sebagai "stage": kartu berbingkai pixel, dua kolom di desktop. */
+const dataProjects: Project[] = [
+    {
+        id: 1,
+        title: 'PWS Dashboard for Maternal & Child Health and Immunization',
+        description:
+            'Local Area Monitoring (PWS) dashboard for 11 Puskesmas areas in Bogor District and Bekasi City (synthetic data). Tracks K1, K4, DPT3 and IDL coverage against pro-rated targets, with a heatmap that ranks the lowest-coverage areas.',
+        tags: ['Looker Studio', 'Google Sheets'],
+    },
+    {
+        id: 2,
+        title: 'Data Quality Monitoring for MCH & Immunization Reports',
+        description:
+            'Cleaned 159 monthly reports from Puskesmas, midwife practices and hospitals (synthetic data) in 18 documented steps, then built a completeness and timeliness scorecard (95.0% / 86.9%) and a DWH–ASIK immunization reconciliation.',
+        tags: ['Microsoft Excel'],
+    },
+    {
+        id: 3,
+        title: 'Ultramarathon Race Data Analysis',
+        description:
+            "Processed 7.46 million race records (828 MB, about 7x Excel's row limit) with chunked reading in pandas, corrected 194,226 speed values recorded in the wrong unit, and built a Tableau dashboard of participation trends, finish times by gender, and speed by age.",
+        tags: ['Python', 'pandas', 'Tableau'],
+    },
+];
+
+const groups = [
+    { id: 'software', title: 'SOFTWARE', stage: 'STAGE', items: softwareProjects },
+    { id: 'data', title: 'DATA', stage: 'DATA STAGE', items: dataProjects },
+];
+
+/** Proyek sebagai "stage": kartu berbingkai pixel, dua kolom di desktop, dikelompokkan software dan data. */
 export default function Projects() {
     return (
-        <ul className="grid gap-8 md:grid-cols-2">
-            {projects.map((project, i) => (
-                <li
-                    key={project.id}
-                    data-reveal
-                    style={{ '--i': i % 2 } as React.CSSProperties}
-                    className={i === projects.length - 1 && projects.length % 2 === 1 ? 'md:col-span-2' : ''}
-                >
-                    <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-panel group flex h-full flex-col p-6 transition-transform duration-100 hover:-translate-y-1 active:translate-y-0"
-                    >
-                        <span className="px-label text-coin">STAGE {i + 1}</span>
-                        <h2 className="mt-3 text-sm leading-relaxed group-hover:text-coin sm:text-base sm:leading-relaxed">
-                            {project.title}
-                        </h2>
-                        <p className="mt-4 text-muted">{project.description}</p>
-                        <ul className="mt-5 flex flex-wrap gap-2" aria-label="Built with">
-                            {project.tags.map((tag) => (
-                                <li key={tag} className="border-2 border-black bg-panel-2 px-2 py-0.5 text-xs text-cream">
-                                    {tag}
-                                </li>
-                            ))}
-                        </ul>
-                        <span className="mt-auto pt-6 font-pixel text-[0.625rem] text-cream group-hover:text-coin">
-                            PLAY <span aria-hidden="true">▶</span>
-                            <span className="sr-only"> (opens in a new tab)</span>
-                        </span>
-                    </a>
-                </li>
+        <div className="space-y-20">
+            {groups.map((group) => (
+                <section key={group.id} aria-labelledby={`projects-${group.id}`}>
+                    <h2 id={`projects-${group.id}`} data-reveal className="text-lg sm:text-xl [text-shadow:4px_4px_0_#000]">
+                        {group.title}
+                    </h2>
+                    <ul className="mt-10 grid gap-8 md:grid-cols-2">
+                        {group.items.map((project, i) => (
+                            <li
+                                key={project.id}
+                                data-reveal
+                                style={{ '--i': i % 2 } as React.CSSProperties}
+                                className={i === group.items.length - 1 && group.items.length % 2 === 1 ? 'md:col-span-2' : ''}
+                            >
+                                <ProjectCard project={project} label={`${group.stage} ${i + 1}`} />
+                            </li>
+                        ))}
+                    </ul>
+                </section>
             ))}
-        </ul>
+        </div>
+    );
+}
+
+function ProjectCard({ project, label }: { project: Project; label: string }) {
+    const body = (
+        <>
+            <span className="px-label text-coin">{label}</span>
+            <h3 className="mt-3 text-sm leading-relaxed group-hover:text-coin sm:text-base sm:leading-relaxed">
+                {project.title}
+            </h3>
+            <p className="mt-4 text-muted">{project.description}</p>
+            <ul className="mt-5 flex flex-wrap gap-2" aria-label="Built with">
+                {project.tags.map((tag) => (
+                    <li key={tag} className="border-2 border-black bg-panel-2 px-2 py-0.5 text-xs text-cream">
+                        {tag}
+                    </li>
+                ))}
+            </ul>
+        </>
+    );
+
+    if (!project.link) {
+        return <div className="px-panel flex h-full flex-col p-6">{body}</div>;
+    }
+
+    return (
+        <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-panel group flex h-full flex-col p-6 transition-transform duration-100 hover:-translate-y-1 active:translate-y-0"
+        >
+            {body}
+            <span className="mt-auto pt-6 font-pixel text-[0.625rem] text-cream group-hover:text-coin">
+                PLAY <span aria-hidden="true">▶</span>
+                <span className="sr-only"> (opens in a new tab)</span>
+            </span>
+        </a>
     );
 }
