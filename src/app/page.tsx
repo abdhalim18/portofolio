@@ -45,8 +45,8 @@ export default function Home() {
               style={{ '--i': 2 } as React.CSSProperties}
               className="px-dialog mt-8 max-w-[46ch] px-5 py-4 text-[17px] leading-relaxed"
             >
-              Web developer focused on front-end and UI systems. I build clean, functional products from concept to
-              deployment.
+              Web developer focused on front-end and UI systems, with a growing interest in data analytics. I build
+              clean, functional products and turn raw data into dashboards that answer real questions.
             </p>
 
             <div data-reveal style={{ '--i': 3 } as React.CSSProperties} className="mt-10 flex flex-wrap items-center gap-4">

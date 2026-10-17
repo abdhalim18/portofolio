@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: '%s · Abdul Halim',
   },
   description:
-    'Muhammad Abdul Halim, web developer focused on front-end and UI systems. Projects, live journal, and contact.',
+    'Muhammad Abdul Halim, web developer focused on front-end and UI systems, with an interest in data analytics. Projects, live journal, and contact.',
   icons: { icon: '/favicon.svg' },
 };
 

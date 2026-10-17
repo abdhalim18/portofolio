@@ -11,11 +11,15 @@ const skills = [
   { name: 'Figma', icon: '/icons/figma.svg' },
   { name: 'JavaScript', icon: '/icons/javascript.svg' },
   { name: 'HTML/CSS', icon: '/icons/html5.svg' },
+  { name: 'Python', icon: '/icons/python.svg' },
+  { name: 'Excel', icon: '/icons/excel.svg' },
+  { name: 'Tableau', icon: '/icons/tableau.svg' },
+  { name: 'Looker Studio', icon: '/icons/lookerstudio.svg' },
 ];
 
 const facts = [
   { label: 'Role', value: 'Web Developer' },
-  { label: 'Focus', value: 'Front-end and UI systems' },
+  { label: 'Focus', value: 'Front-end, UI systems, and data analytics' },
   { label: 'Study', value: 'Information Systems graduate' },
   { label: 'Status', value: 'Open to full-time roles and collaborations' },
 ];
@@ -33,9 +37,10 @@ export default function About() {
             I turn complex problems into simple, intuitive web products.
           </p>
           <p data-reveal className="mt-6 max-w-[58ch] text-[17px] text-muted">
-            I recently graduated in Information Systems with a focus on web development. I&apos;m looking for a
-            full-time role or a project team where I can ship real work, learn from experienced engineers, and keep
-            getting better at the craft.
+            I recently graduated in Information Systems with a focus on web development. Lately I&apos;ve also been
+            working with data: cleaning messy reports, analysing millions of rows in Python, and building dashboards
+            in Tableau and Looker Studio. I&apos;m looking for a front-end, full-stack, or data analyst role where I
+            can ship real work, learn from experienced people, and keep getting better at the craft.
           </p>
         </div>
 
