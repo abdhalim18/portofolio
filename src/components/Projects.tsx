@@ -73,6 +73,7 @@ const dataProjects: Project[] = [
         description:
             'Local Area Monitoring (PWS) dashboard for 11 Puskesmas areas in Bogor District and Bekasi City (synthetic data). Tracks K1, K4, DPT3 and IDL coverage against pro-rated targets, with a heatmap that ranks the lowest-coverage areas.',
         tags: ['Looker Studio', 'Google Sheets'],
+        link: 'https://drive.google.com/file/d/1NubURzzsUiAtsj8wngF_SqJzvM4zmouV/view?usp=sharing',
     },
     {
         id: 2,
@@ -80,6 +81,7 @@ const dataProjects: Project[] = [
         description:
             'Cleaned 159 monthly reports from Puskesmas, midwife practices and hospitals (synthetic data) in 18 documented steps, then built a completeness and timeliness scorecard (95.0% / 86.9%) and a DWH–ASIK immunization reconciliation.',
         tags: ['Microsoft Excel'],
+        link: 'https://drive.google.com/drive/folders/1kGMF8rOu1CN_Ai-6fR_Q4_ruFt5y5Sm2?usp=sharing',
     },
     {
         id: 3,
@@ -87,12 +89,13 @@ const dataProjects: Project[] = [
         description:
             "Processed 7.46 million race records (828 MB, about 7x Excel's row limit) with chunked reading in pandas, corrected 194,226 speed values recorded in the wrong unit, and built a Tableau dashboard of participation trends, finish times by gender, and speed by age.",
         tags: ['Python', 'pandas', 'Tableau'],
+        link: 'https://drive.google.com/drive/folders/1uLsGJChxs1Wcy8au2KjdrtJocVaiPQ7H?usp=sharing',
     },
 ];
 
 const groups = [
-    { id: 'software', title: 'SOFTWARE', stage: 'STAGE', items: softwareProjects },
-    { id: 'data', title: 'DATA', stage: 'DATA STAGE', items: dataProjects },
+    { id: 'software', title: 'SOFTWARE', stage: 'STAGE', cta: 'PLAY', items: softwareProjects },
+    { id: 'data', title: 'DATA', stage: 'DATA STAGE', cta: 'VIEW', items: dataProjects },
 ];
 
 /** Proyek sebagai "stage": kartu berbingkai pixel, dua kolom di desktop, dikelompokkan software dan data. */
@@ -112,7 +115,7 @@ export default function Projects() {
                                 style={{ '--i': i % 2 } as React.CSSProperties}
                                 className={i === group.items.length - 1 && group.items.length % 2 === 1 ? 'md:col-span-2' : ''}
                             >
-                                <ProjectCard project={project} label={`${group.stage} ${i + 1}`} />
+                                <ProjectCard project={project} label={`${group.stage} ${i + 1}`} cta={group.cta} />
                             </li>
                         ))}
                     </ul>
@@ -122,7 +125,7 @@ export default function Projects() {
     );
 }
 
-function ProjectCard({ project, label }: { project: Project; label: string }) {
+function ProjectCard({ project, label, cta }: { project: Project; label: string; cta: string }) {
     const body = (
         <>
             <span className="px-label text-coin">{label}</span>
@@ -153,7 +156,7 @@ function ProjectCard({ project, label }: { project: Project; label: string }) {
         >
             {body}
             <span className="mt-auto pt-6 font-pixel text-[0.625rem] text-cream group-hover:text-coin">
-                PLAY <span aria-hidden="true">▶</span>
+                {cta} <span aria-hidden="true">▶</span>
                 <span className="sr-only"> (opens in a new tab)</span>
             </span>
         </a>
