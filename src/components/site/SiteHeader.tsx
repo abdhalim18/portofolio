@@ -30,12 +30,14 @@ export default function SiteHeader() {
         <nav aria-label="Main">
           <ul className="flex items-center gap-0.5 font-pixel text-[0.5625rem] whitespace-nowrap sm:gap-3 sm:text-xs">
             {NAV.map((item) => {
-              const current = pathname === item.href;
+              // Halaman turunan (mis. /projects/ultramarathon) tetap menyorot menu induknya.
+              const exact = pathname === item.href;
+              const current = exact || pathname.startsWith(`${item.href}/`);
               return (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    aria-current={current ? 'page' : undefined}
+                    aria-current={exact ? 'page' : current ? 'true' : undefined}
                     className={`flex items-center gap-1.5 px-1.5 py-3 transition-colors hover:text-coin sm:px-2 ${current ? 'text-coin' : 'text-cream'}`}
                   >
                     <span aria-hidden="true" className={`hidden sm:inline ${current ? '' : 'invisible'}`}>

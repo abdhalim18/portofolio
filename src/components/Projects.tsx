@@ -1,9 +1,11 @@
+import Link from 'next/link';
+
 type Project = {
     id: number;
     title: string;
     description: string;
     tags: string[];
-    /** Kosongkan jika belum ada link publik; kartu tampil tanpa tombol PLAY. */
+    /** Link luar dibuka di tab baru; link yang diawali "/" membuka halaman studi kasus di situs ini. */
     link?: string;
 };
 
@@ -69,27 +71,11 @@ const softwareProjects: Project[] = [
 const dataProjects: Project[] = [
     {
         id: 1,
-        title: 'PWS Dashboard for Maternal & Child Health and Immunization',
-        description:
-            'Local Area Monitoring (PWS) dashboard for 11 Puskesmas areas in Bogor District and Bekasi City (synthetic data). Tracks K1, K4, DPT3 and IDL coverage against pro-rated targets, with a heatmap that ranks the lowest-coverage areas.',
-        tags: ['Looker Studio', 'Google Sheets'],
-        link: 'https://drive.google.com/file/d/1NubURzzsUiAtsj8wngF_SqJzvM4zmouV/view?usp=sharing',
-    },
-    {
-        id: 2,
-        title: 'Data Quality Monitoring for MCH & Immunization Reports',
-        description:
-            'Cleaned 159 monthly reports from Puskesmas, midwife practices and hospitals (synthetic data) in 18 documented steps, then built a completeness and timeliness scorecard (95.0% / 86.9%) and a DWH–ASIK immunization reconciliation.',
-        tags: ['Microsoft Excel'],
-        link: 'https://drive.google.com/drive/folders/1kGMF8rOu1CN_Ai-6fR_Q4_ruFt5y5Sm2?usp=sharing',
-    },
-    {
-        id: 3,
         title: 'Ultramarathon Race Data Analysis',
         description:
             "Processed 7.46 million race records (828 MB, about 7x Excel's row limit) with chunked reading in pandas, corrected 194,226 speed values recorded in the wrong unit, and built a Tableau dashboard of participation trends, finish times by gender, and speed by age.",
         tags: ['Python', 'pandas', 'Tableau'],
-        link: 'https://drive.google.com/drive/folders/1uLsGJChxs1Wcy8au2KjdrtJocVaiPQ7H?usp=sharing',
+        link: '/projects/ultramarathon',
     },
 ];
 
@@ -147,13 +133,22 @@ function ProjectCard({ project, label, cta }: { project: Project; label: string;
         return <div className="px-panel flex h-full flex-col p-6">{body}</div>;
     }
 
+    const className =
+        'px-panel group flex h-full flex-col p-6 transition-transform duration-100 hover:-translate-y-1 active:translate-y-0';
+
+    if (project.link.startsWith('/')) {
+        return (
+            <Link href={project.link} className={className}>
+                {body}
+                <span className="mt-auto pt-6 font-pixel text-[0.625rem] text-cream group-hover:text-coin">
+                    {cta} <span aria-hidden="true">▶</span>
+                </span>
+            </Link>
+        );
+    }
+
     return (
-        <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-panel group flex h-full flex-col p-6 transition-transform duration-100 hover:-translate-y-1 active:translate-y-0"
-        >
+        <a href={project.link} target="_blank" rel="noopener noreferrer" className={className}>
             {body}
             <span className="mt-auto pt-6 font-pixel text-[0.625rem] text-cream group-hover:text-coin">
                 {cta} <span aria-hidden="true">▶</span>
